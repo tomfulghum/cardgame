@@ -173,7 +173,9 @@ xcopy /y /d  "$(SolutionDir)\external\SDL2_ttf-2.0.15\lib\x64\*.dll" "$(TargetDi
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\AssetDatabase.cpp" />
     <ClCompile Include="src\cardgame.cpp" />
+    <ClCompile Include="src\SDLManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -264,6 +266,8 @@ xcopy /y /d  "$(SolutionDir)\external\SDL2_ttf-2.0.15\lib\x64\*.dll" "$(TargetDi
     <ClInclude Include="external\SDL2-2.0.9\include\SDL_video.h" />
     <ClInclude Include="external\SDL2-2.0.9\include\SDL_vulkan.h" />
     <ClInclude Include="external\SDL2_image-2.0.4\include\SDL_image.h" />
+    <ClInclude Include="include\AssetDatabase.h" />
+    <ClInclude Include="include\SDLManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

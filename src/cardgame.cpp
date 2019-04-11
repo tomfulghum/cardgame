@@ -1,10 +1,19 @@
 #include <iostream>
-#include "SDL.h"
-#include "SDL_image.h"
-#include "SDL_ttf.h"
+
+#include "SDLManager.h"
 
 int main(int argc, char* args[])
 {
-    std::cout << "Hello World!\n";
+	SDLManager* sdlManager = SDLManager::Instance();
+	sdlManager->Initialize("Test", 640, 480);
+
+	while (!sdlManager->ShouldQuit())
+	{
+		sdlManager->Update();
+		sdlManager->Render();
+	}
+
+	sdlManager->Terminate();
+
 	return 0;
 }
