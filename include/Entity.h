@@ -1,3 +1,6 @@
 #pragma once
 
-[...] // Plan
+class Entity
+{
+
+};
