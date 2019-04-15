@@ -1,22 +1,23 @@
-#include "SDLManager.h"
+#include "Environment.h"
 
 #include <iostream>
 
+#include "Time.h"
 #include "Toolbox.h"
 
-SDLManager::SDLManager()
+Environment::Environment()
 {
 
 }
 
 inline std::string GetInitializationWarningMessage()
 {
-	return "[ERROR] SDLManager: SDLManager has not been initialized!";
+	return "[ERROR] Environment: Environment has not been initialized!";
 }
 
-SDL_Window* SDLManager::GetWindow()
+SDL_Window* Environment::GetWindow()
 {
-	SDLManager* instance = Toolbox::GetSDLManager();
+	Environment* instance = Toolbox::GetEnvironment();
 
 	if (!instance->initialized)
 	{
@@ -29,9 +30,9 @@ SDL_Window* SDLManager::GetWindow()
 	}
 }
 
-SDL_Renderer* SDLManager::GetRenderer()
+SDL_Renderer* Environment::GetRenderer()
 {
-	SDLManager* instance = Toolbox::GetSDLManager();
+	Environment* instance = Toolbox::GetEnvironment();
 
 	if (!instance->initialized)
 	{
@@ -44,23 +45,16 @@ SDL_Renderer* SDLManager::GetRenderer()
 	}
 }
 
-bool SDLManager::ShouldQuit()
+void Environment::Initialize(const std::string& _windowName, const int _windowWidth, const int _windowHeight)
 {
-	SDLManager* instance = Toolbox::GetSDLManager();
-
-	return instance->quit;
-}
-
-void SDLManager::Initialize(const std::string& _windowName, const int _windowWidth, const int _windowHeight)
-{
-	SDLManager* instance = Toolbox::GetSDLManager();
+	Environment* instance = Toolbox::GetEnvironment();
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	instance->window = SDL_CreateWindow(_windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _windowWidth, _windowHeight, 0);
 	if (instance->window == nullptr)
 	{
-		std::cout << "[ERROR] SDLManager: Failed to initialize SDL2 Window!" << std::endl;
+		std::cout << "[ERROR] Environment: Failed to initialize SDL2 Window!" << std::endl;
 		std::cout << SDL_GetError() << std::endl;
 		return;
 	}
@@ -68,7 +62,7 @@ void SDLManager::Initialize(const std::string& _windowName, const int _windowWid
 	instance->renderer = SDL_CreateRenderer(instance->window, -1, SDL_RENDERER_ACCELERATED);
 	if (instance->renderer == nullptr)
 	{
-		std::cout << "[ERROR] SDLManager: Failed to initialize SDL2 Renderer!" << std::endl;
+		std::cout << "[ERROR] Environment: Failed to initialize SDL2 Renderer!" << std::endl;
 		std::cout << SDL_GetError() << std::endl;
 		return;
 	}
@@ -81,9 +75,9 @@ void SDLManager::Initialize(const std::string& _windowName, const int _windowWid
 	Toolbox::GetInputManager()->Update();
 }
 
-void SDLManager::Terminate()
+void Environment::Terminate()
 {
-	SDLManager* instance = Toolbox::GetSDLManager();
+	Environment* instance = Toolbox::GetEnvironment();
 
 	SDL_DestroyWindow(instance->window);
 	SDL_Quit();
@@ -91,9 +85,30 @@ void SDLManager::Terminate()
 	instance->initialized = false;
 }
 
-void SDLManager::Update()
+void Environment::Run()
 {
-	SDLManager* instance = Toolbox::GetSDLManager();
+	Environment* instance = Toolbox::GetEnvironment();
+	EntityManager* entityManager = Toolbox::GetEntityManager();
+
+	Uint64 now = SDL_GetPerformanceCounter();
+	Uint64 last = 0;
+
+	while (!instance->quit)
+	{
+		now = SDL_GetPerformanceCounter();
+		Time::deltaTime = (double)((now - last) * 1000 / (double)SDL_GetPerformanceFrequency()) * 0.001;
+		last = now;
+
+		std::cout << "DeltaTime: " << Time::deltaTime << std::endl;
+
+		instance->Update();
+		entityManager->Update();
+		instance->Render();
+	}
+}
+
+void Environment::Update()
+{
 	InputManager* inputManager = Toolbox::GetInputManager();
 
 	inputManager->Update();
@@ -104,7 +119,7 @@ void SDLManager::Update()
 		switch (event.type)
 		{
 		case SDL_QUIT:
-			instance->quit = true;
+			this->quit = true;
 			break;
 		case SDL_MOUSEBUTTONDOWN:
 		case SDL_MOUSEBUTTONUP:
@@ -114,21 +129,19 @@ void SDLManager::Update()
 	}
 }
 
-void SDLManager::Render()
+void Environment::Render()
 {
-	SDLManager* instance = Toolbox::GetSDLManager();
-
-	if (!instance->initialized)
+	if (!this->initialized)
 	{
 		std::cout << GetInitializationWarningMessage() << std::endl;
 	}
 	else
 	{
-		SDL_SetRenderDrawColor(instance->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-		SDL_RenderClear(instance->renderer);
+		SDL_SetRenderDrawColor(this->renderer, 32, 32, 32, SDL_ALPHA_OPAQUE);
+		SDL_RenderClear(this->renderer);
 
-		// TODO: Render entities
+		Toolbox::GetEntityManager()->Render();
 
-		SDL_RenderPresent(instance->renderer);
+		SDL_RenderPresent(this->renderer);
 	}
 }

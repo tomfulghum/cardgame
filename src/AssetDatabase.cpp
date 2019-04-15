@@ -12,7 +12,7 @@ SDL_Texture* AssetDatabase::LoadTexture(const std::string& _name, const std::str
 {
 	if (textures.find(_name) == textures.end())
 	{
-		std::cout << "[ERROR] AssetDatabase: Texture with name \" " << _name << "\" already exists in database!" << std::endl;
+		std::cout << "[ERROR] AssetDatabase: Texture with name \"" << _name << "\" already exists in database!" << std::endl;
 		return nullptr;
 	}
 
@@ -26,7 +26,7 @@ SDL_Texture* AssetDatabase::LoadTexture(const std::string& _name, const std::str
 	}
 	else
 	{
-		texture = SDL_CreateTextureFromSurface(Toolbox::GetSDLManager()->GetRenderer(), surface);
+		texture = SDL_CreateTextureFromSurface(Toolbox::GetEnvironment()->GetRenderer(), surface);
 		if (texture == nullptr)
 		{
 			std::cout << "[ERROR] AssetDatabase: Could not create texture from path: " << _path << std::endl;

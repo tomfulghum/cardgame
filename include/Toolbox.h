@@ -2,8 +2,7 @@
 
 #include "EntityManager.h"
 #include "InputManager.h"
-#include "SDLManager.h"
-
+#include "Environment.h"
 
 //     _.+._
 //   (^\/^\/^)
@@ -15,14 +14,14 @@ public:
 	static void Initialize();
 	static void Terminate();
 
-	static SDLManager* GetSDLManager();
+	static Environment* GetEnvironment();
 	static EntityManager* GetEntityManager();
 	static InputManager* GetInputManager();
 
 private:
 	Toolbox();
 
-	static SDLManager* sdlManager;
+	static Environment* environment;
 	static EntityManager* entityManager;
 	static InputManager* inputManager;
 };

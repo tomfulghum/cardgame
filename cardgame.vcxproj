@@ -178,8 +178,10 @@ xcopy /y /d  "$(SolutionDir)\external\SDL2_ttf-2.0.15\lib\x64\*.dll" "$(TargetDi
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\EntityManager.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
+    <ClCompile Include="src\PlayingCard.cpp" />
+    <ClCompile Include="src\Time.cpp" />
     <ClCompile Include="src\Toolbox.cpp" />
-    <ClCompile Include="src\SDLManager.cpp" />
+    <ClCompile Include="src\Environment.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -274,8 +276,10 @@ xcopy /y /d  "$(SolutionDir)\external\SDL2_ttf-2.0.15\lib\x64\*.dll" "$(TargetDi
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\EntityManager.h" />
     <ClInclude Include="include\InputManager.h" />
+    <ClInclude Include="include\PlayingCard.h" />
+    <ClInclude Include="include\Time.h" />
     <ClInclude Include="include\Toolbox.h" />
-    <ClInclude Include="include\SDLManager.h" />
+    <ClInclude Include="include\Environment.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

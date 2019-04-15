@@ -4,22 +4,23 @@
 
 #include "SDL.h"
 
-class SDLManager
+class Environment
 {
 	friend class Toolbox;
 
 public:
 	static SDL_Window* GetWindow();
 	static SDL_Renderer* GetRenderer();
-	static bool ShouldQuit();
 
 	static void Initialize(const std::string& _windowName, const int _windowWidth, const int _windowHeight);
 	static void Terminate();
-	static void Update();
-	static void Render();
+	static void Run();
 
 private:
-	SDLManager();
+	Environment();
+
+	void Update();
+	void Render();
 
 	bool initialized = false;
 	bool quit = false;

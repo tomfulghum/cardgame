@@ -3,7 +3,7 @@
 #include <iostream>
 
 EntityManager* Toolbox::entityManager;
-SDLManager* Toolbox::sdlManager;
+Environment* Toolbox::environment;
 InputManager* Toolbox::inputManager;
 
 Toolbox::Toolbox()
@@ -19,18 +19,18 @@ inline std::string GetInitializationWarningMessage()
 void Toolbox::Initialize()
 {
 	entityManager = new EntityManager();
-	sdlManager = new SDLManager();
+	environment = new Environment();
 	inputManager = new InputManager();
 }
 
 void Toolbox::Terminate()
 {
 	delete(entityManager);
-	delete(sdlManager);
+	delete(environment);
 	delete(inputManager);
 
 	entityManager = nullptr;
-	sdlManager = nullptr;
+	environment = nullptr;
 	inputManager = nullptr;
 }
 
@@ -44,14 +44,14 @@ EntityManager* Toolbox::GetEntityManager()
 	return entityManager;
 }
 
-SDLManager* Toolbox::GetSDLManager()
+Environment* Toolbox::GetEnvironment()
 {
-	if (sdlManager == nullptr)
+	if (environment == nullptr)
 	{
 		std::cout << GetInitializationWarningMessage() << std::endl;
 	}
 
-	return sdlManager;
+	return environment;
 }
 
 

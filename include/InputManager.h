@@ -27,7 +27,7 @@ enum class MouseButton
 class InputManager
 {
 	friend class Toolbox;
-	friend class SDLManager;
+	friend class Environment;
 
 public:
 	static bool GetMouseButton(const MouseButton _button);

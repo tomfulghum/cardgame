@@ -1,19 +1,19 @@
 #include <iostream>
 
+#include "PlayingCard.h"
 #include "Toolbox.h"
 
 int main(int argc, char* args[])
 {
 	Toolbox::Initialize();
-	SDLManager::Initialize("Test", 640, 480);
+	Environment::Initialize("Test", 640, 480);
 
-	while (!SDLManager::ShouldQuit())
-	{
-		SDLManager::Update();
-		SDLManager::Render();
-	}
+	PlayingCard* card = new PlayingCard();
+	EntityManager::AddEntity(card, 0);
 
-	SDLManager::Terminate();
+	Environment::Run();
+
+	Environment::Terminate();
 	Toolbox::Terminate();
 
 	return 0;
