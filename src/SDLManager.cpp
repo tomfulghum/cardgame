@@ -2,115 +2,133 @@
 
 #include <iostream>
 
-SDLManager* SDLManager::instance;
+#include "Toolbox.h"
 
 SDLManager::SDLManager()
 {
 
 }
 
-SDLManager* SDLManager::Instance()
+inline std::string GetInitializationWarningMessage()
 {
-	if (instance == nullptr)
-	{
-		instance = new SDLManager();
-	}
-
-	return instance;
+	return "[ERROR] SDLManager: SDLManager has not been initialized!";
 }
 
 SDL_Window* SDLManager::GetWindow()
 {
-	if (!this->initialized)
+	SDLManager* instance = Toolbox::GetSDLManager();
+
+	if (!instance->initialized)
 	{
-		std::cout << GetInitializationErrorMessage() << std::endl;
+		std::cout << GetInitializationWarningMessage() << std::endl;
 		return nullptr;
 	}
 	else
 	{
-		return this->window;
+		return instance->window;
 	}
 }
 
 SDL_Renderer* SDLManager::GetRenderer()
 {
-	if (!this->initialized)
+	SDLManager* instance = Toolbox::GetSDLManager();
+
+	if (!instance->initialized)
 	{
-		std::cout << GetInitializationErrorMessage() << std::endl;
+		std::cout << GetInitializationWarningMessage() << std::endl;
 		return nullptr;
 	}
 	else
 	{
-		return this->renderer;
+		return instance->renderer;
 	}
 }
 
 bool SDLManager::ShouldQuit()
 {
-	return this->quit;
+	SDLManager* instance = Toolbox::GetSDLManager();
+
+	return instance->quit;
 }
 
 void SDLManager::Initialize(const std::string& _windowName, const int _windowWidth, const int _windowHeight)
 {
+	SDLManager* instance = Toolbox::GetSDLManager();
+
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	this->window = SDL_CreateWindow(_windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _windowWidth, _windowHeight, 0);
-	if (window == nullptr)
+	instance->window = SDL_CreateWindow(_windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _windowWidth, _windowHeight, 0);
+	if (instance->window == nullptr)
 	{
 		std::cout << "[ERROR] SDLManager: Failed to initialize SDL2 Window!" << std::endl;
 		std::cout << SDL_GetError() << std::endl;
 		return;
 	}
 
-	this->renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-	if (renderer == nullptr)
+	instance->renderer = SDL_CreateRenderer(instance->window, -1, SDL_RENDERER_ACCELERATED);
+	if (instance->renderer == nullptr)
 	{
 		std::cout << "[ERROR] SDLManager: Failed to initialize SDL2 Renderer!" << std::endl;
 		std::cout << SDL_GetError() << std::endl;
 		return;
 	}
 
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-	SDL_RenderClear(renderer);
+	SDL_SetRenderDrawColor(instance->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+	SDL_RenderClear(instance->renderer);
 
-	this->initialized = true;
+	instance->initialized = true;
+
+	Toolbox::GetInputManager()->Update();
 }
 
 void SDLManager::Terminate()
 {
-	SDL_DestroyWindow(this->window);
+	SDLManager* instance = Toolbox::GetSDLManager();
+
+	SDL_DestroyWindow(instance->window);
 	SDL_Quit();
 
-	this->initialized = false;
+	instance->initialized = false;
 }
 
 void SDLManager::Update()
 {
+	SDLManager* instance = Toolbox::GetSDLManager();
+	InputManager* inputManager = Toolbox::GetInputManager();
+
+	inputManager->Update();
+
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
-		this->quit = event.type == SDL_QUIT;
+		switch (event.type)
+		{
+		case SDL_QUIT:
+			instance->quit = true;
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+		case SDL_MOUSEBUTTONUP:
+			inputManager->HandleInputEvent(event);
+			break;
+		}
 	}
 }
 
 void SDLManager::Render()
 {
-	if (!this->initialized)
+	SDLManager* instance = Toolbox::GetSDLManager();
+
+	if (!instance->initialized)
 	{
-		std::cout << GetInitializationErrorMessage() << std::endl;
+		std::cout << GetInitializationWarningMessage() << std::endl;
 	}
 	else
 	{
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-		SDL_RenderClear(renderer);
+		SDL_SetRenderDrawColor(instance->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+		SDL_RenderClear(instance->renderer);
 
 		// TODO: Render entities
 
-		SDL_RenderPresent(renderer);
+		SDL_RenderPresent(instance->renderer);
 	}
-}
-
-std::string SDLManager::GetInitializationErrorMessage()
-{
-	return "[ERROR] SDLManager: SDLManager has not been initialized!";
 }

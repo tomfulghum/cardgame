@@ -6,27 +6,23 @@
 
 class SDLManager
 {
+	friend class Toolbox;
+
 public:
-	static SDLManager* Instance();
+	static SDL_Window* GetWindow();
+	static SDL_Renderer* GetRenderer();
+	static bool ShouldQuit();
 
-	SDL_Window* GetWindow();
-	SDL_Renderer* GetRenderer();
-	bool ShouldQuit();
-
-	void Initialize(const std::string& _windowName, const int _windowWidth, const int _windowHeight);
-	void Terminate();
-	void Update();
-	void Render();
+	static void Initialize(const std::string& _windowName, const int _windowWidth, const int _windowHeight);
+	static void Terminate();
+	static void Update();
+	static void Render();
 
 private:
 	SDLManager();
-
-	static SDLManager* instance;
 
 	bool initialized = false;
 	bool quit = false;
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
-
-	std::string GetInitializationErrorMessage();
 };

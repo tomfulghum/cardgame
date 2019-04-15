@@ -4,21 +4,18 @@
 
 #include "Entity.h"
 
-//        _.+._
-//      (^\/^\/^)
-//       \@*@*@/
-//       {_____}
 class EntityManager
 {
+	friend class Toolbox;
+
 public:
-	EntityManager();
-	~EntityManager();
+	static void Update();
+	static void Render();
 
-	void Update();
-	void Render();
-
-	void AddEntity(Entity* _entity, int _order);
+	static void AddEntity(Entity* _entity, int _order);
 	
 private:
+	EntityManager();
+
 	std::multimap<int, Entity*> entities;
 };

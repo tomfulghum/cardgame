@@ -1,19 +1,20 @@
 #include <iostream>
 
-#include "SDLManager.h"
+#include "Toolbox.h"
 
 int main(int argc, char* args[])
 {
-	SDLManager* sdlManager = SDLManager::Instance();
-	sdlManager->Initialize("Test", 640, 480);
+	Toolbox::Initialize();
+	SDLManager::Initialize("Test", 640, 480);
 
-	while (!sdlManager->ShouldQuit())
+	while (!SDLManager::ShouldQuit())
 	{
-		sdlManager->Update();
-		sdlManager->Render();
+		SDLManager::Update();
+		SDLManager::Render();
 	}
 
-	sdlManager->Terminate();
+	SDLManager::Terminate();
+	Toolbox::Terminate();
 
 	return 0;
 }

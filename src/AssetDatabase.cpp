@@ -4,13 +4,13 @@
 
 #include "SDL_image.h"
 
-#include "SDLManager.h"
+#include "Toolbox.h"
 
-std::map<std::string, SDL_Texture*> AssetDatabase::Textures;
+std::map<std::string, SDL_Texture*> AssetDatabase::textures;
 
 SDL_Texture* AssetDatabase::LoadTexture(const std::string& _name, const std::string& _path)
 {
-	if (Textures.find(_name) == Textures.end())
+	if (textures.find(_name) == textures.end())
 	{
 		std::cout << "[ERROR] AssetDatabase: Texture with name \" " << _name << "\" already exists in database!" << std::endl;
 		return nullptr;
@@ -26,7 +26,7 @@ SDL_Texture* AssetDatabase::LoadTexture(const std::string& _name, const std::str
 	}
 	else
 	{
-		texture = SDL_CreateTextureFromSurface(SDLManager::Instance()->GetRenderer(), surface);
+		texture = SDL_CreateTextureFromSurface(Toolbox::GetSDLManager()->GetRenderer(), surface);
 		if (texture == nullptr)
 		{
 			std::cout << "[ERROR] AssetDatabase: Could not create texture from path: " << _path << std::endl;
@@ -34,11 +34,16 @@ SDL_Texture* AssetDatabase::LoadTexture(const std::string& _name, const std::str
 		}
 		else
 		{
-			Textures.insert(std::pair<std::string, SDL_Texture*>(_name, texture));
+			textures.insert(std::pair<std::string, SDL_Texture*>(_name, texture));
 		}
 
 		SDL_FreeSurface(surface);
 	}
 
 	return texture;
+}
+
+SDL_Texture* AssetDatabase::GetTexture(const std::string& _name)
+{
+	return textures[_name];
 }
