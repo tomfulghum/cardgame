@@ -1,5 +1,7 @@
 #include "EntityManager.h"
 
+#include <algorithm>
+
 #include "Toolbox.h"
 
 EntityManager::EntityManager()
@@ -13,23 +15,34 @@ void EntityManager::Update()
 
 	for (auto entity : instance->entities)
 	{
-		entity.second->Update();
+		entity->Update();
 	}
 }
 
 void EntityManager::Render()
 {
 	EntityManager* instance = Toolbox::GetEntityManager();
+	
+	instance->SortEntitiesByRenderOrder();
 
 	for (auto entity : instance->entities)
 	{
-		entity.second->Render();
+		entity->Render();
 	}
 }
 
-void EntityManager::AddEntity(Entity* _entity, int _order)
+void EntityManager::AddEntity(Entity* _entity)
 {
 	EntityManager* instance = Toolbox::GetEntityManager();
+	instance->entities.push_back(_entity);
+}
 
-	instance->entities.insert(std::pair<int, Entity*>(_order, _entity));
+void EntityManager::SortEntitiesByRenderOrder()
+{
+	std::sort(entities.begin(), entities.end(),
+		[&](const Entity* a, const Entity* b) -> bool
+		{
+			return a->GetRenderOrder() > b->GetRenderOrder();
+		}
+	);
 }

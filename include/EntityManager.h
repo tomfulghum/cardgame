@@ -1,6 +1,6 @@
 #pragma once
 
-#include <map>
+#include <vector>
 
 #include "Entity.h"
 
@@ -12,10 +12,12 @@ public:
 	static void Update();
 	static void Render();
 
-	static void AddEntity(Entity* _entity, int _order);
+	static void AddEntity(Entity* _entity);
 	
 private:
 	EntityManager();
 
-	std::multimap<int, Entity*> entities;
+	std::vector<Entity*> entities;
+
+	void SortEntitiesByRenderOrder();
 };

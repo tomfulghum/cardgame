@@ -2,14 +2,14 @@
 
 #include <map>
 
-#include "SDL.h"
+#include "Texture.h"
 
 class AssetDatabase
 {
 public:
-	static SDL_Texture* LoadTexture(const std::string& _name, const std::string& _path);
-	static SDL_Texture* GetTexture(const std::string& _name);
+	static Texture* LoadTexture(const std::string& _name, const std::string& _path);
+	static Texture* GetTexture(const std::string& _name);
 
 private:
-	static std::map<std::string, SDL_Texture*> textures;
+	static std::map<std::string, Texture*> textures;
 };

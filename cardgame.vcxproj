@@ -124,7 +124,8 @@
     <PostBuildEvent>
       <Command>xcopy /y /d  "$(SolutionDir)\external\SDL2-2.0.9\lib\x64\*.dll" "$(TargetDir)"
 xcopy /y /d  "$(SolutionDir)\external\SDL2_image-2.0.4\lib\x64\*.dll" "$(TargetDir)"
-xcopy /y /d  "$(SolutionDir)\external\SDL2_ttf-2.0.15\lib\x64\*.dll" "$(TargetDir)"</Command>
+xcopy /y /d  "$(SolutionDir)\external\SDL2_ttf-2.0.15\lib\x64\*.dll" "$(TargetDir)"
+xcopy /y /d /s "$(SolutionDir)\assets\*" "$(TargetDir)\assets\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -169,7 +170,8 @@ xcopy /y /d  "$(SolutionDir)\external\SDL2_ttf-2.0.15\lib\x64\*.dll" "$(TargetDi
     <PostBuildEvent>
       <Command>xcopy /y /d  "$(SolutionDir)\external\SDL2-2.0.9\lib\x64\*.dll" "$(TargetDir)"
 xcopy /y /d  "$(SolutionDir)\external\SDL2_image-2.0.4\lib\x64\*.dll" "$(TargetDir)"
-xcopy /y /d  "$(SolutionDir)\external\SDL2_ttf-2.0.15\lib\x64\*.dll" "$(TargetDir)"</Command>
+xcopy /y /d  "$(SolutionDir)\external\SDL2_ttf-2.0.15\lib\x64\*.dll" "$(TargetDir)"
+xcopy /y /d /s "$(SolutionDir)\assets\*" "$(TargetDir)\assets\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -179,6 +181,7 @@ xcopy /y /d  "$(SolutionDir)\external\SDL2_ttf-2.0.15\lib\x64\*.dll" "$(TargetDi
     <ClCompile Include="src\EntityManager.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\PlayingCard.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Time.cpp" />
     <ClCompile Include="src\Toolbox.cpp" />
     <ClCompile Include="src\Environment.cpp" />
@@ -277,6 +280,7 @@ xcopy /y /d  "$(SolutionDir)\external\SDL2_ttf-2.0.15\lib\x64\*.dll" "$(TargetDi
     <ClInclude Include="include\EntityManager.h" />
     <ClInclude Include="include\InputManager.h" />
     <ClInclude Include="include\PlayingCard.h" />
+    <ClInclude Include="include\Texture.h" />
     <ClInclude Include="include\Time.h" />
     <ClInclude Include="include\Toolbox.h" />
     <ClInclude Include="include\Environment.h" />

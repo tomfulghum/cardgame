@@ -1,15 +1,18 @@
 #include <iostream>
 
+#include "AssetDatabase.h"
 #include "PlayingCard.h"
 #include "Toolbox.h"
 
 int main(int argc, char* args[])
 {
 	Toolbox::Initialize();
-	Environment::Initialize("Test", 640, 480);
+	Environment::Initialize("Test", 431, 856);
 
-	PlayingCard* card = new PlayingCard();
-	EntityManager::AddEntity(card, 0);
+	Texture* testSprite = AssetDatabase::LoadTexture("sprite_test", "assets/sprite.png");
+
+	PlayingCard* card = new PlayingCard(testSprite);
+	EntityManager::AddEntity(card);
 
 	Environment::Run();
 

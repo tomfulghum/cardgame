@@ -99,8 +99,6 @@ void Environment::Run()
 		Time::deltaTime = (double)((now - last) * 1000 / (double)SDL_GetPerformanceFrequency()) * 0.001;
 		last = now;
 
-		std::cout << "DeltaTime: " << Time::deltaTime << std::endl;
-
 		instance->Update();
 		entityManager->Update();
 		instance->Render();
