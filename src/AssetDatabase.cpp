@@ -50,6 +50,12 @@ Texture* AssetDatabase::LoadTexture(const std::string& _name, const std::string&
 
 Texture* AssetDatabase::GetTexture(const std::string& _name)
 {
+	if (textures.find(_name) == textures.end())
+	{
+		std::cout << "[ERROR] AssetDatabase: Texture \"" << _name << "\" does not exist in database!" << std::endl;
+		return nullptr;
+	}
+
 	return textures[_name];
 }
 

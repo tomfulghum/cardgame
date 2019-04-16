@@ -48,6 +48,18 @@ SDL_Renderer* Environment::GetRenderer()
 	}
 }
 
+int Environment::GetWindowWidth()
+{
+	Environment* instance = Toolbox::GetEnvironment();
+	return instance->windowWidth;
+}
+
+int Environment::GetWindowHeight()
+{
+	Environment* instance = Toolbox::GetEnvironment();
+	return instance->windowHeight;
+}
+
 void Environment::Initialize(const std::string& _windowName, const int _windowWidth, const int _windowHeight)
 {
 	Environment* instance = Toolbox::GetEnvironment();
@@ -61,6 +73,8 @@ void Environment::Initialize(const std::string& _windowName, const int _windowWi
 		std::cout << SDL_GetError() << std::endl;
 		return;
 	}
+	instance->windowWidth = _windowWidth;
+	instance->windowHeight = _windowHeight;
 
 	instance->renderer = SDL_CreateRenderer(instance->window, -1, SDL_RENDERER_ACCELERATED);
 	if (instance->renderer == nullptr)

@@ -20,4 +20,6 @@ private:
 	std::vector<Entity*> entities;
 
 	void SortEntitiesByRenderOrder();
+
+	static bool IsPointInRectangle(const glm::vec2& _point, const glm::vec2& _position, const glm::vec2& _dimensions);
 };

@@ -13,7 +13,7 @@ public:
 	int GetWidth() { return this->width; }
 	int GetHeight() { return this->height; }
 
-	void Render(const glm::vec2& _position, const int _scale);
+	void Render(const glm::vec2& _position, const double _scale);
 
 private:
 	SDL_Texture* texture;

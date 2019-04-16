@@ -179,8 +179,9 @@ xcopy /y /d /s "$(SolutionDir)\assets\*" "$(TargetDir)\assets\"</Command>
     <ClCompile Include="src\cardgame.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\EntityManager.cpp" />
+    <ClCompile Include="src\Entity\FPSCounter.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
-    <ClCompile Include="src\PlayingCard.cpp" />
+    <ClCompile Include="src\Entity\PlayingCard.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Time.cpp" />
     <ClCompile Include="src\Toolbox.cpp" />
@@ -276,10 +277,12 @@ xcopy /y /d /s "$(SolutionDir)\assets\*" "$(TargetDir)\assets\"</Command>
     <ClInclude Include="external\SDL2-2.0.9\include\SDL_vulkan.h" />
     <ClInclude Include="external\SDL2_image-2.0.4\include\SDL_image.h" />
     <ClInclude Include="include\AssetDatabase.h" />
+    <ClInclude Include="include\Config.h" />
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\EntityManager.h" />
+    <ClInclude Include="include\Entity\FPSCounter.h" />
     <ClInclude Include="include\InputManager.h" />
-    <ClInclude Include="include\PlayingCard.h" />
+    <ClInclude Include="include\Entity\PlayingCard.h" />
     <ClInclude Include="include\Texture.h" />
     <ClInclude Include="include\Time.h" />
     <ClInclude Include="include\Toolbox.h" />

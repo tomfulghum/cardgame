@@ -11,6 +11,8 @@ class Environment
 public:
 	static SDL_Window* GetWindow();
 	static SDL_Renderer* GetRenderer();
+	static int GetWindowWidth();
+	static int GetWindowHeight();
 
 	static void Initialize(const std::string& _windowName, const int _windowWidth, const int _windowHeight);
 	static void Terminate();
@@ -22,8 +24,11 @@ private:
 	void Update();
 	void Render();
 
-	bool initialized = false;
-	bool quit = false;
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
+
+	int windowWidth = 0;
+	int windowHeight = 0;
+	bool initialized = false;
+	bool quit = false;
 };

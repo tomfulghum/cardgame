@@ -15,6 +15,11 @@ void Entity::Render()
 
 }
 
+void Entity::OnMouseOver()
+{
+
+}
+
 void Entity::SetRenderOrder(int _renderOrder)
 {
 	this->renderOrder = _renderOrder;
@@ -23,4 +28,9 @@ void Entity::SetRenderOrder(int _renderOrder)
 void Entity::SetPosition(int _x, int _y)
 {
 	this->position = glm::vec2(_x, _y);
+}
+
+void Entity::SetScale(float _scale)
+{
+	this->scale = _scale;
 }
