@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+#include "SDL_ttf.h"
+
+#include "AssetDatabase.h"
 #include "Time.h"
 #include "Toolbox.h"
 
@@ -67,6 +70,13 @@ void Environment::Initialize(const std::string& _windowName, const int _windowWi
 		return;
 	}
 
+	if (TTF_Init() == -1)
+	{
+		std::cout << "[ERROR] Environment: Failed to initialize SDL2_ttf!" << std::endl;
+		std::cout << TTF_GetError() << std::endl;
+		return;
+	}
+
 	SDL_SetRenderDrawColor(instance->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 	SDL_RenderClear(instance->renderer);
 
@@ -102,6 +112,8 @@ void Environment::Run()
 		instance->Update();
 		entityManager->Update();
 		instance->Render();
+
+		//AssetDatabase::ClearTexts();
 	}
 }
 
