@@ -18,7 +18,7 @@ enum class PlayingCardType
 class PlayingCard : public Entity
 {
 public:
-	PlayingCard(PlayingCardType _type, glm::vec2 _position = glm::vec2(), int _renderOrder = 0);
+	PlayingCard(const PlayingCardType _type, const glm::vec2& _position = glm::vec2(), const int _renderOrder = 0);
 
 	PlayingCardType GetType() { return this->type; }
 

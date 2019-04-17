@@ -13,11 +13,14 @@ public:
 	static void Render();
 
 	static void AddEntity(Entity* _entity);
+	static void RemoveEntity(Entity* _entity);
 	
 private:
 	EntityManager();
 
 	std::vector<Entity*> entities;
+	std::vector<Entity*> addedEntities;
+	std::vector<Entity*> removedEntities;
 
 	void SortEntitiesByRenderOrder();
 

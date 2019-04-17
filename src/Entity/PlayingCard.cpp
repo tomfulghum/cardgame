@@ -10,7 +10,7 @@
 #include "InputManager.h"
 #include "Time.h"
 
-PlayingCard::PlayingCard(PlayingCardType _type, glm::vec2 _position, int _renderOrder) : Entity(_position, _renderOrder), type(_type)
+PlayingCard::PlayingCard(const PlayingCardType _type, const glm::vec2& _position, const int _renderOrder) : Entity(_position, _renderOrder), type(_type)
 {
 	switch (_type)
 	{

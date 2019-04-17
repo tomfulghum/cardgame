@@ -16,26 +16,35 @@ void EntityManager::Update()
 
 	instance->SortEntitiesByRenderOrder();
 
-	std::vector<Entity*> mouseoverEntities;
 	glm::vec2 mousePosition = InputManager::GetMousePosition();
 
-	for (auto& entity : instance->entities)
+	auto rit = instance->entities.rbegin();
+	for (; rit != instance->entities.rend(); ++rit)
 	{
-		if (IsPointInRectangle(mousePosition, entity->GetPosition(), entity->GetDimensions()))
+		if (IsPointInRectangle(mousePosition, (*rit)->GetPosition(), (*rit)->GetDimensions()))
 		{
-			mouseoverEntities.push_back(entity);
+			(*rit)->OnMouseOver();
+			break;
 		}
-	}
-
-	if (mouseoverEntities.size() > 0)
-	{
-		mouseoverEntities.back()->OnMouseOver();
 	}
 
 	for (auto& entity : instance->entities)
 	{
 		entity->Update();
 	}
+
+	for (auto& entity : instance->removedEntities)
+	{
+		auto it = std::find(instance->entities.begin(), instance->entities.end(), entity);
+		instance->entities.erase(it);
+	}
+	instance->removedEntities.clear();
+
+	for (auto& entity : instance->addedEntities)
+	{
+		instance->entities.push_back(entity);
+	}
+	instance->addedEntities.clear();
 }
 
 void EntityManager::Render()
@@ -51,17 +60,28 @@ void EntityManager::Render()
 void EntityManager::AddEntity(Entity* _entity)
 {
 	EntityManager* instance = Toolbox::GetEntityManager();
-	instance->entities.push_back(_entity);
+
+	if (std::find(instance->entities.begin(), instance->entities.end(), _entity) == instance->entities.end())
+	{
+		instance->addedEntities.push_back(_entity);
+	}
+}
+
+void EntityManager::RemoveEntity(Entity* _entity)
+{
+	EntityManager* instance = Toolbox::GetEntityManager();
+
+	if (std::find(instance->entities.begin(), instance->entities.end(), _entity) != instance->entities.end())
+	{
+		instance->removedEntities.push_back(_entity);
+	}
 }
 
 void EntityManager::SortEntitiesByRenderOrder()
 {
-	std::sort(entities.begin(), entities.end(),
-		[&](const Entity* a, const Entity* b) -> bool
-		{
-			return a->GetRenderOrder() < b->GetRenderOrder();
-		}
-	);
+	std::sort(entities.begin(), entities.end(), [&](const Entity* a, const Entity* b) -> bool {
+		return a->GetRenderOrder() < b->GetRenderOrder();
+	});
 }
 
 bool EntityManager::IsPointInRectangle(const glm::vec2& _point, const glm::vec2& _position, const glm::vec2& _dimensions)

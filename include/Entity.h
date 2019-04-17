@@ -21,10 +21,8 @@ public:
 	inline float GetScale() { return this->scale; }
 
 protected:
+	int renderOrder = 0;
 	glm::vec2 position = glm::vec2(0, 0);
 	glm::vec2 dimensions = glm::vec2(0, 0);
 	float scale = 1.0;
-
-private:
-	int renderOrder = 0;
 };
