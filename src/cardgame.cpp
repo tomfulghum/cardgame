@@ -11,6 +11,13 @@
 
 void LoadAssets();
 
+void Test1(Entity* _card);
+void Test2(Entity* _card);
+
+PlayingCardDeck* cardDeck;
+PlayingCardPile* cardPile1;
+PlayingCardPile* cardPile2;
+
 int main(int argc, char* args[])
 {
 	Toolbox::Initialize();
@@ -18,11 +25,16 @@ int main(int argc, char* args[])
 
 	LoadAssets();
 
-	PlayingCardDeck* cardDeck = new PlayingCardDeck();
+	cardDeck = new PlayingCardDeck();
 	cardDeck->Shuffle();
 
-	PlayingCardPile* cardPile = new PlayingCardPile(glm::vec2(10, 300), 100);
-	EntityManager::AddEntity(cardPile);
+	cardPile1 = new PlayingCardPile(glm::vec2(10, 300), 100);
+	cardPile1->SetOnClickCallback(Test1);
+	EntityManager::AddEntity(cardPile1);
+
+	cardPile2 = new PlayingCardPile(glm::vec2(210, 300), 100);
+	cardPile2->SetOnClickCallback(Test2);
+	EntityManager::AddEntity(cardPile2);
 
 	PlayingCard* card1 = cardDeck->DrawCard();
 	PlayingCard* card2 = cardDeck->DrawCard();
@@ -46,6 +58,8 @@ int main(int argc, char* args[])
 	EntityManager::AddEntity(card4);
 	EntityManager::AddEntity(card5);
 	//EntityManager::AddEntity(cardDeck);
+
+	cardPile1->AddToTop(card1);
 
 	FPSCounter* fpsCounter = new FPSCounter();
 	EntityManager::AddEntity(fpsCounter);
@@ -76,4 +90,14 @@ void LoadAssets()
 	{
 		AssetDatabase::LoadTexture(sprite.first, sprite.second);
 	}
+}
+
+void Test1(Entity* _card)
+{
+	cardPile2->AddToTop(cardPile1->DrawCard());
+}
+
+void Test2(Entity* _card)
+{
+	cardPile1->AddToTop(cardPile2->DrawCard());
 }

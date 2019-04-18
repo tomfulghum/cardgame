@@ -24,11 +24,13 @@ public:
 
 	void Update() override;
 	void Render() override;
-	void OnMouseOver() override;
 
 private:
 	PlayingCardType type;
-	Texture* texture;
-
+	Texture* cardTexture;
+	Texture* highlightTexture;
 	bool highlight = false;
+
+	void OnClick() override;
+	void OnMouseOver() override;
 };

@@ -14,25 +14,6 @@ void EntityManager::Update()
 {
 	EntityManager* instance = Toolbox::GetEntityManager();
 
-	instance->SortEntitiesByRenderOrder();
-
-	glm::vec2 mousePosition = InputManager::GetMousePosition();
-
-	auto rit = instance->entities.rbegin();
-	for (; rit != instance->entities.rend(); ++rit)
-	{
-		if (IsPointInRectangle(mousePosition, (*rit)->GetPosition(), (*rit)->GetDimensions()))
-		{
-			(*rit)->OnMouseOver();
-			break;
-		}
-	}
-
-	for (auto& entity : instance->entities)
-	{
-		entity->Update();
-	}
-
 	for (auto& entity : instance->removedEntities)
 	{
 		auto it = std::find(instance->entities.begin(), instance->entities.end(), entity);
@@ -45,6 +26,28 @@ void EntityManager::Update()
 		instance->entities.push_back(entity);
 	}
 	instance->addedEntities.clear();
+
+	instance->SortEntitiesByRenderOrder();
+
+	glm::vec2 mousePosition = InputManager::GetMousePosition();
+	auto rit = instance->entities.rbegin();
+	for (; rit != instance->entities.rend(); ++rit)
+	{
+		if (IsPointInRectangle(mousePosition, (*rit)->position, (*rit)->GetDimensions()))
+		{
+			(*rit)->InvokeOnMouseOver();
+			if (InputManager::GetMouseButtonDown(MouseButton::LEFT))
+			{
+				(*rit)->InvokeOnClick();
+			}
+			break;
+		}
+	}
+
+	for (auto& entity : instance->entities)
+	{
+		entity->Update();
+	}
 }
 
 void EntityManager::Render()
@@ -61,7 +64,8 @@ void EntityManager::AddEntity(Entity* _entity)
 {
 	EntityManager* instance = Toolbox::GetEntityManager();
 
-	if (std::find(instance->entities.begin(), instance->entities.end(), _entity) == instance->entities.end())
+	if (std::find(instance->entities.begin(), instance->entities.end(), _entity) == instance->entities.end()
+		&& std::find(instance->addedEntities.begin(), instance->addedEntities.end(), _entity) == instance->addedEntities.end())
 	{
 		instance->addedEntities.push_back(_entity);
 	}
@@ -80,7 +84,7 @@ void EntityManager::RemoveEntity(Entity* _entity)
 void EntityManager::SortEntitiesByRenderOrder()
 {
 	std::sort(entities.begin(), entities.end(), [&](const Entity* a, const Entity* b) -> bool {
-		return a->GetRenderOrder() < b->GetRenderOrder();
+		return a->renderOrder < b->renderOrder;
 	});
 }
 

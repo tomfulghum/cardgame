@@ -65,7 +65,7 @@ PlayingCard* PlayingCardDeck::DrawCard()
 	return card;
 }
 
-std::vector<PlayingCard*>& PlayingCardDeck::DrawMultiple(const int _count)
+std::vector<PlayingCard*> PlayingCardDeck::DrawMultiple(const int _count)
 {
 	std::vector<PlayingCard*> drawnCards;
 	for (int i = 0; i < _count; i++)

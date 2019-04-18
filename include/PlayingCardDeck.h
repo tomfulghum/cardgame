@@ -12,11 +12,7 @@ public:
 	void GenerateDeck();
 	void Shuffle();
 	PlayingCard* DrawCard();
-	std::vector<PlayingCard*>& DrawMultiple(const int _count);
-	//void AddToTop(PlayingCard* _card);
-	//void AddToBottom(PlayingCard* _card);
-	//void AddRandomly(PlayingCard* _card);
-	//PlayingCard* DrawTopCard();
+	std::vector<PlayingCard*> DrawMultiple(const int _count);
 
 private:
 	std::vector<PlayingCard*> cards;
