@@ -2,7 +2,6 @@
 
 #include "AssetDatabase.h"
 #include "Environment.h"
-#include "Texture.h"
 #include "Time.h"
 
 
@@ -16,17 +15,18 @@ void FPSCounter::Update()
 	this->frameCounter++;
 	this->secondCounter += Time::DeltaTime();
 
-	if (this->secondCounter >= 1.0)
+	if (this->secondCounter >= (1.0 / 1.0))
 	{
-		this->fps = frameCounter;
+		this->fps = (int)frameCounter * 1.0;
 		this->frameCounter = 0;
 		this->secondCounter = 0;
+		delete(text);
+		this->text = AssetDatabase::RenderText("assets/fonts/uni0553-webfont.ttf", 24, std::to_string(fps), false);
 	}
 }
 
 void FPSCounter::Render()
 {
-	Texture* text = AssetDatabase::RenderText("assets/fonts/uni0553-webfont.ttf", 24, std::to_string(fps));
-	text->Render(glm::vec2(this->position.x - text->GetWidth() - 10, this->position.y), 1);
+	this->text->Render(glm::vec2(this->position.x - text->GetWidth() - 10, this->position.y), 1);
 }
 

@@ -8,9 +8,9 @@
 
 class PlayingCardPile : public Entity
 {
-public:
-	PlayingCardPile(const glm::vec2& _position, const int _renderOrder);
+	friend class EntityManager;
 
+public:
 	void Update() override;
 	void Render() override;
 
@@ -20,6 +20,8 @@ public:
 	int Count();
 
 private:
+	PlayingCardPile(const glm::vec2& _position = glm::vec2(), const int _renderOrder = 0);
+
 	std::vector<PlayingCard*> cards;
 	Texture* texture;
 	Texture* highlightTexture;

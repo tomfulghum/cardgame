@@ -14,12 +14,13 @@ void EntityManager::Update()
 {
 	EntityManager* instance = Toolbox::GetEntityManager();
 
-	for (auto& entity : instance->removedEntities)
+	for (auto& entity : instance->destroyedEntities)
 	{
 		auto it = std::find(instance->entities.begin(), instance->entities.end(), entity);
 		instance->entities.erase(it);
+		delete(*it);
 	}
-	instance->removedEntities.clear();
+	instance->destroyedEntities.clear();
 
 	for (auto& entity : instance->addedEntities)
 	{
@@ -46,7 +47,10 @@ void EntityManager::Update()
 
 	for (auto& entity : instance->entities)
 	{
-		entity->Update();
+		if (entity->active)
+		{
+			entity->Update();
+		}
 	}
 }
 
@@ -56,28 +60,20 @@ void EntityManager::Render()
 
 	for (auto& entity : instance->entities)
 	{
-		entity->Render();
+		if (entity->active)
+		{
+			entity->Render();
+		}
 	}
 }
 
-void EntityManager::AddEntity(Entity* _entity)
-{
-	EntityManager* instance = Toolbox::GetEntityManager();
-
-	if (std::find(instance->entities.begin(), instance->entities.end(), _entity) == instance->entities.end()
-		&& std::find(instance->addedEntities.begin(), instance->addedEntities.end(), _entity) == instance->addedEntities.end())
-	{
-		instance->addedEntities.push_back(_entity);
-	}
-}
-
-void EntityManager::RemoveEntity(Entity* _entity)
+void EntityManager::DestroyEntity(Entity* _entity)
 {
 	EntityManager* instance = Toolbox::GetEntityManager();
 
 	if (std::find(instance->entities.begin(), instance->entities.end(), _entity) != instance->entities.end())
 	{
-		instance->removedEntities.push_back(_entity);
+		instance->destroyedEntities.push_back(_entity);
 	}
 }
 

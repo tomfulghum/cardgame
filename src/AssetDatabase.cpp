@@ -59,7 +59,7 @@ Texture* AssetDatabase::GetTexture(const std::string& _name)
 	return textures[_name];
 }
 
-Texture* AssetDatabase::RenderText(const std::string& _fontPath, const int _size, const std::string& _text)
+Texture* AssetDatabase::RenderText(const std::string& _fontPath, const int _size, const std::string& _text, const bool _save)
 {
 	std::string identifier = _fontPath + std::to_string(_size) + _text;
 
@@ -99,7 +99,10 @@ Texture* AssetDatabase::RenderText(const std::string& _fontPath, const int _size
 		else
 		{
 			texture = new Texture(sdlTexture, surface->w, surface->h);
-			texts.insert_or_assign(identifier, texture);
+			if (_save)
+			{
+				texts.insert_or_assign(identifier, texture);
+			}
 		}
 
 		SDL_FreeSurface(surface);

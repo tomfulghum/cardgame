@@ -11,7 +11,7 @@ class AssetDatabase
 public:
 	static Texture* LoadTexture(const std::string& _name, const std::string& _path);
 	static Texture* GetTexture(const std::string& _name);
-	static Texture* RenderText(const std::string& _fontPath, const int _size, const std::string& _text);
+	static Texture* RenderText(const std::string& _fontPath, const int _size, const std::string& _text, const bool _save);
 
 	static void ClearTextures();
 	static void ClearFonts();

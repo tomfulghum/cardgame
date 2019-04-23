@@ -22,6 +22,11 @@ void PlayingCardPile::Render()
 {
 	this->texture->Render(this->position, this->scale);
 
+	if (this->cards.size() > 0)
+	{
+		this->cards.back()->GetTexture()->Render(this->position, this->scale);
+	}
+
 	if (this->highlight)
 	{
 		this->highlightTexture->Render(this->position, this->scale);
@@ -50,16 +55,6 @@ void PlayingCardPile::AddToTop(PlayingCard* _card)
 {
 	if (_card != nullptr)
 	{
-		if (this->cards.size() > 0)
-		{
-			EntityManager::RemoveEntity(this->cards.back());
-			this->cards.back()->SetOnClickCallback(nullptr);
-		}
-
-		_card->SetPosition(this->position);
-		_card->SetRenderOrder(this->renderOrder + 1);
-		EntityManager::AddEntity(_card);
-
 		this->cards.push_back(_card);
 	}
 }
@@ -68,24 +63,14 @@ void PlayingCardPile::AddToTop(std::vector<PlayingCard*>& _cards)
 {
 	if (_cards.size() > 0)
 	{
-		if (this->cards.size() > 0)
-		{
-			EntityManager::RemoveEntity(this->cards.back());
-			this->cards.back()->SetOnClickCallback(nullptr);
-		}
-
 		for (auto& card : _cards)
 		{
 			this->cards.push_back(card);
 		}
-
-		this->cards.back()->SetPosition(this->position);
-		this->cards.back()->SetRenderOrder(this->renderOrder + 1);
-		EntityManager::AddEntity(this->cards.back());
 	}
 }
 
 int PlayingCardPile::Count()
 {
-	return this->cards.size();
+	return (int)this->cards.size();
 }

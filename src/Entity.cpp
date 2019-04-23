@@ -5,12 +5,17 @@ Entity::Entity(glm::vec2 _position, int _renderOrder) : position(_position), ren
 
 }
 
-void Entity::SetRenderOrder(int _renderOrder)
+void Entity::SetActive(const bool _active)
+{
+	this->active = _active;
+}
+
+void Entity::SetRenderOrder(const int _renderOrder)
 {
 	this->renderOrder = _renderOrder;
 }
 
-void Entity::SetPosition(int _x, int _y)
+void Entity::SetPosition(const int _x, const int _y)
 {
 	this->position = glm::vec2(_x, _y);
 }
@@ -20,7 +25,12 @@ void Entity::SetPosition(const glm::vec2& _position)
 	this->position = _position;
 }
 
-void Entity::SetScale(float _scale)
+void Entity::SetDimensions(const glm::vec2& _dimensions)
+{
+	this->dimensions = _dimensions;
+}
+
+void Entity::SetScale(const float _scale)
 {
 	this->scale = _scale;
 }

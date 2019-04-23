@@ -11,14 +11,14 @@ class Entity
 public:
 	using OnClickCallback = std::function<void(Entity*)>;
 
-	Entity(glm::vec2 _position = glm::vec2(), int _renderOrder = 0);
-
 	virtual void Update() = 0;
 	virtual void Render() {}
 
+	void SetActive(const bool _active);
 	void SetRenderOrder(const int _renderOrder);
 	void SetPosition(const int _x, const int _y);
 	void SetPosition(const glm::vec2& _position);
+	void SetDimensions(const glm::vec2& _dimensions);
 	void SetScale(const float _scale);
 	void SetOnClickCallback(OnClickCallback _callback);
 
@@ -28,9 +28,12 @@ public:
 	inline float GetScale() { return this->scale; }
 
 protected:
+	Entity(glm::vec2 _position = glm::vec2(), int _renderOrder = 0);
+
+	bool active = false;
 	int renderOrder = 0;
 	glm::vec2 position = glm::vec2(0, 0);
-	glm::vec2 dimensions = glm::vec2(0, 0);
+	glm::vec2 dimensions = glm::vec2(1, 1);
 	float scale = 1.0;
 
 	OnClickCallback onClickCallback;

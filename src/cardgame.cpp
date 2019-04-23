@@ -3,9 +3,9 @@
 #include "AssetDatabase.h"
 #include "Config.h"
 #include "Entity/FPSCounter.h"
-#include "Entity/PlayingCard.h"
 #include "Entity/PlayingCardPile.h"
 #include "Environment.h"
+#include "PlayingCard.h"
 #include "PlayingCardDeck.h"
 #include "Toolbox.h"
 
@@ -28,41 +28,26 @@ int main(int argc, char* args[])
 	cardDeck = new PlayingCardDeck();
 	cardDeck->Shuffle();
 
-	cardPile1 = new PlayingCardPile(glm::vec2(10, 300), 100);
+	cardPile1 = EntityManager::CreateEntity<PlayingCardPile>();
+	cardPile1->SetPosition(10, 300);
+	cardPile1->SetRenderOrder(100);
 	cardPile1->SetOnClickCallback(Test1);
-	EntityManager::AddEntity(cardPile1);
 
-	cardPile2 = new PlayingCardPile(glm::vec2(210, 300), 100);
+	cardPile2 = EntityManager::CreateEntity<PlayingCardPile>();
+	cardPile2->SetPosition(210, 300);
+	cardPile2->SetRenderOrder(100);
 	cardPile2->SetOnClickCallback(Test2);
-	EntityManager::AddEntity(cardPile2);
 
 	PlayingCard* card1 = cardDeck->DrawCard();
 	PlayingCard* card2 = cardDeck->DrawCard();
 	PlayingCard* card3 = cardDeck->DrawCard();
 	PlayingCard* card4 = cardDeck->DrawCard();
 	PlayingCard* card5 = cardDeck->DrawCard();
-	//PlayingCard* card1 = new PlayingCard(PlayingCardType::ROCK, glm::vec2(120, 20), 101);
-	//PlayingCard* card2 = new PlayingCard(PlayingCardType::PAPER, glm::vec2(220, 10), 102);
-	//PlayingCard* card3 = new PlayingCard(PlayingCardType::SCISSORS, glm::vec2(10, 40), 100);
-	//PlayingCard* card4 = new PlayingCard(PlayingCardType::LIZARD, glm::vec2(320, 20), 103);
-	//PlayingCard* card5 = new PlayingCard(PlayingCardType::SPOCK, glm::vec2(420, 40), 104);
-	//PlayingCard* cardDeck = new PlayingCard(spriteCardDeck, glm::vec2(200, 300), 105);
-	card1->SetPosition(10, 40);
-	card2->SetPosition(120, 20);
-	card3->SetPosition(230, 10);
-	card4->SetPosition(340, 20);
-	card5->SetPosition(450, 40);
-	EntityManager::AddEntity(card1);
-	EntityManager::AddEntity(card2);
-	EntityManager::AddEntity(card3);
-	EntityManager::AddEntity(card4);
-	EntityManager::AddEntity(card5);
-	//EntityManager::AddEntity(cardDeck);
 
 	cardPile1->AddToTop(card1);
+	cardPile1->AddToTop(card2);
 
-	FPSCounter* fpsCounter = new FPSCounter();
-	EntityManager::AddEntity(fpsCounter);
+	FPSCounter* fpsCounter = EntityManager::CreateEntity<FPSCounter>();
 
 	Environment::Run();
 
@@ -74,7 +59,7 @@ int main(int argc, char* args[])
 
 void LoadAssets()
 {
-	std::vector<std::pair<const char*, const char*>> sprites = 
+	const std::vector<std::pair<const char*, const char*>> sprites = 
 	{
 		{SPRITE_CARD_ROCK_NAME,           SPRITE_CARD_ROCK},
 		{SPRITE_CARD_PAPER_NAME,          SPRITE_CARD_PAPER},

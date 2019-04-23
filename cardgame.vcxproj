@@ -183,7 +183,7 @@ xcopy /y /d /s "$(SolutionDir)\assets\*" "$(TargetDir)\assets\"</Command>
     <ClCompile Include="src\Entity\PlayingCardPile.cpp" />
     <ClCompile Include="src\PlayingCardDeck.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
-    <ClCompile Include="src\Entity\PlayingCard.cpp" />
+    <ClCompile Include="src\PlayingCard.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Time.cpp" />
     <ClCompile Include="src\Toolbox.cpp" />
@@ -285,7 +285,7 @@ xcopy /y /d /s "$(SolutionDir)\assets\*" "$(TargetDir)\assets\"</Command>
     <ClInclude Include="include\Entity\FPSCounter.h" />
     <ClInclude Include="include\PlayingCardDeck.h" />
     <ClInclude Include="include\InputManager.h" />
-    <ClInclude Include="include\Entity\PlayingCard.h" />
+    <ClInclude Include="include\PlayingCard.h" />
     <ClInclude Include="include\Entity\PlayingCardPile.h" />
     <ClInclude Include="include\Texture.h" />
     <ClInclude Include="include\Time.h" />

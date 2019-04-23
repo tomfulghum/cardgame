@@ -126,8 +126,6 @@ void Environment::Run()
 		instance->Update();
 		entityManager->Update();
 		instance->Render();
-
-		//AssetDatabase::ClearTexts();
 	}
 }
 

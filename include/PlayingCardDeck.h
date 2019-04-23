@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "Entity/PlayingCard.h"
+#include "PlayingCard.h"
 
 class PlayingCardDeck
 {
