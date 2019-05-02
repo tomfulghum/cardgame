@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "Entity.h"
+#include "Toolbox.h"
 
 class EntityManager
 {
@@ -13,7 +14,6 @@ public:
 	static void Render();
 
 	template<class T> static T* CreateEntity();
-
 	static void DestroyEntity(Entity* _entity);
 	
 private:
@@ -24,8 +24,6 @@ private:
 	std::vector<Entity*> destroyedEntities;
 
 	void SortEntitiesByRenderOrder();
-
-	static bool IsPointInRectangle(const glm::vec2& _point, const glm::vec2& _position, const glm::vec2& _dimensions);
 };
 
 template<class T>

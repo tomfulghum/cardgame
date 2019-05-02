@@ -1,12 +1,10 @@
 #pragma once
 
-#include <vector>
-
 #include "Entity.h"
 #include "PlayingCard.h"
 #include "Texture.h"
 
-class PlayingCardPile : public Entity
+class PlayingCardSpot : public Entity
 {
 	friend class EntityManager;
 
@@ -14,17 +12,19 @@ public:
 	void Update() override;
 	void Render() override;
 
-	PlayingCard* DrawCard();
-	void AddToTop(PlayingCard* _card);
-	void AddToTop(std::vector<PlayingCard*>& _cards);
-	int Count();
+	void SetCard(PlayingCard* _card);
+	void SetDoHighlight(bool _doHighlight);
+
+	PlayingCard* TakeCard();
+	bool IsFree();
+	void Clear();
 
 private:
-	PlayingCardPile();
+	PlayingCardSpot();
 
-	std::vector<PlayingCard*> cards;
-	Texture* texture;
+	PlayingCard* card;
 	Texture* highlightTexture;
+	bool doHighlight = true;
 	bool highlight = false;
 
 	void OnMouseOver() override;

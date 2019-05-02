@@ -59,12 +59,13 @@ Texture* AssetDatabase::GetTexture(const std::string& _name)
 	return textures[_name];
 }
 
-Texture* AssetDatabase::RenderText(const std::string& _fontPath, const int _size, const std::string& _text, const bool _save)
+Texture* AssetDatabase::RenderText(const std::string& _fontPath, const int _size, const std::string& _text, Color _color, const bool _save)
 {
-	std::string identifier = _fontPath + std::to_string(_size) + _text;
+	std::string identifier = _fontPath + std::to_string(_size) + _color.ToString() + _text;
 
-	if (texts.find(identifier) != texts.end())
+	if (_save && texts.find(identifier) != texts.end())
 	{
+		//std::cout << "[WARNING] AssetDatabase: Text \"" << identifier << "\" already exists in database!" << std::endl;
 		return texts[identifier];
 	}
 
@@ -77,10 +78,10 @@ Texture* AssetDatabase::RenderText(const std::string& _fontPath, const int _size
 	Texture* texture = nullptr;
 	SDL_Texture* sdlTexture = nullptr;
 	SDL_Color color;
-	color.r = 255;
-	color.g = 255;
-	color.b = 255;
-	color.a = 255;
+	color.r = _color.r;
+	color.g = _color.g;
+	color.b = _color.b;
+	color.a = _color.a;
 	SDL_Surface* surface = TTF_RenderText_Solid(font, _text.c_str(), color);
 
 	if (surface == nullptr)

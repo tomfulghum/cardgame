@@ -1,11 +1,13 @@
 #include "Entity/PlayingCardPile.h"
 
+#include "glm.hpp"
+
 #include "AssetDatabase.h"
+#include "Config.h"
 #include "EntityManager.h"
 #include "InputManager.h"
-#include "Config.h"
 
-PlayingCardPile::PlayingCardPile(const glm::vec2& _position, const int _renderOrder) : Entity(_position, _renderOrder)
+PlayingCardPile::PlayingCardPile() : Entity(glm::vec2(), 0)
 {
 	this->texture = AssetDatabase::GetTexture(SPRITE_CARD_DECK_NAME);
 	this->highlightTexture = AssetDatabase::GetTexture(SPRITE_CARD_DECK_HIGHLIGHT_NAME);
@@ -27,7 +29,7 @@ void PlayingCardPile::Render()
 		this->cards.back()->GetTexture()->Render(this->position, this->scale);
 	}
 
-	if (this->highlight)
+	if (this->highlight && this->cards.size() > 0)
 	{
 		this->highlightTexture->Render(this->position, this->scale);
 		this->highlight = false;

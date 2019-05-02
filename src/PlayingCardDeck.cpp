@@ -49,6 +49,11 @@ void PlayingCardDeck::Shuffle()
 	std::shuffle(this->cards.begin(), this->cards.end(), std::mt19937_64(rd()));
 }
 
+int PlayingCardDeck::Count()
+{
+	return this->cards.size();
+}
+
 PlayingCard* PlayingCardDeck::DrawCard()
 {
 	PlayingCard* card = nullptr;
@@ -59,7 +64,7 @@ PlayingCard* PlayingCardDeck::DrawCard()
 	}
 	else
 	{
-		std::cout << "[WARNING] PlayingCardDeck: Card deck is empty!";
+		std::cout << "[WARNING] PlayingCardDeck: Card deck is empty!" << std::endl;
 	}
 
 	return card;
@@ -73,7 +78,7 @@ std::vector<PlayingCard*> PlayingCardDeck::DrawMultiple(const int _count)
 		PlayingCard* card = DrawCard();
 		if (card != nullptr)
 		{
-			drawnCards.push_back(DrawCard());
+			drawnCards.push_back(card);
 		}
 	}
 

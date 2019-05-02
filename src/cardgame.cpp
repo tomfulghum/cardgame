@@ -3,7 +3,9 @@
 #include "AssetDatabase.h"
 #include "Config.h"
 #include "Entity/FPSCounter.h"
+#include "Entity/GameController.h"
 #include "Entity/PlayingCardPile.h"
+#include "Entity/PlayingCardSpot.h"
 #include "Environment.h"
 #include "PlayingCard.h"
 #include "PlayingCardDeck.h"
@@ -17,35 +19,51 @@ void Test2(Entity* _card);
 PlayingCardDeck* cardDeck;
 PlayingCardPile* cardPile1;
 PlayingCardPile* cardPile2;
+PlayingCardSpot* cardSpot1;
+PlayingCardSpot* cardSpot2;
 
 int main(int argc, char* args[])
 {
 	Toolbox::Initialize();
-	Environment::Initialize("Test", 800, 600);
+	Environment::Initialize("Test", 1280, 720);
 
 	LoadAssets();
 
 	cardDeck = new PlayingCardDeck();
 	cardDeck->Shuffle();
 
-	cardPile1 = EntityManager::CreateEntity<PlayingCardPile>();
-	cardPile1->SetPosition(10, 300);
-	cardPile1->SetRenderOrder(100);
-	cardPile1->SetOnClickCallback(Test1);
+	//cardPile1 = EntityManager::CreateEntity<PlayingCardPile>();
+	//cardPile1->SetPosition(10, 300);
+	//cardPile1->SetRenderOrder(100);
+	//cardPile1->SetOnClickCallback(Test1);
+	//
+	//cardPile2 = EntityManager::CreateEntity<PlayingCardPile>();
+	//cardPile2->SetPosition(210, 300);
+	//cardPile2->SetRenderOrder(100);
+	//cardPile2->SetOnClickCallback(Test2);
 
-	cardPile2 = EntityManager::CreateEntity<PlayingCardPile>();
-	cardPile2->SetPosition(210, 300);
-	cardPile2->SetRenderOrder(100);
-	cardPile2->SetOnClickCallback(Test2);
+	GameController* controller = EntityManager::CreateEntity<GameController>();
+	controller->Initialize();
 
-	PlayingCard* card1 = cardDeck->DrawCard();
-	PlayingCard* card2 = cardDeck->DrawCard();
-	PlayingCard* card3 = cardDeck->DrawCard();
-	PlayingCard* card4 = cardDeck->DrawCard();
-	PlayingCard* card5 = cardDeck->DrawCard();
+	//cardSpot1 = EntityManager::CreateEntity<PlayingCardSpot>();
+	//cardSpot1->SetPosition(10, 10);
+	//cardSpot1->SetRenderOrder(100);
 
-	cardPile1->AddToTop(card1);
-	cardPile1->AddToTop(card2);
+	//cardSpot2 = EntityManager::CreateEntity<PlayingCardSpot>();
+	//cardSpot2->SetPosition(210, 10);
+	//cardSpot2->SetRenderOrder(100);
+
+	//PlayingCard* card1 = cardDeck->DrawCard();
+	//PlayingCard* card2 = cardDeck->DrawCard();
+	//PlayingCard* card3 = cardDeck->DrawCard();
+	//PlayingCard* card4 = cardDeck->DrawCard();
+	//PlayingCard* card5 = cardDeck->DrawCard();
+
+	//cardPile1->AddToTop(card1);
+	//cardPile1->AddToTop(card2);
+
+	//std::vector<PlayingCard*> drawnCards = cardDeck->DrawMultiple(50);
+	//cardPile1->AddToTop(drawnCards);
 
 	FPSCounter* fpsCounter = EntityManager::CreateEntity<FPSCounter>();
 
@@ -77,12 +95,12 @@ void LoadAssets()
 	}
 }
 
-void Test1(Entity* _card)
+void Test1(Entity* _cardPile)
 {
-	cardPile2->AddToTop(cardPile1->DrawCard());
+	cardPile2->AddToTop(static_cast<PlayingCardPile*>(_cardPile)->DrawCard());
 }
 
-void Test2(Entity* _card)
+void Test2(Entity* _cardPile)
 {
-	cardPile1->AddToTop(cardPile2->DrawCard());
+	cardPile1->AddToTop(static_cast<PlayingCardPile*>(_cardPile)->DrawCard());
 }

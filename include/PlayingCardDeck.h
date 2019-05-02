@@ -11,6 +11,7 @@ public:
 
 	void GenerateDeck();
 	void Shuffle();
+	int Count();
 	PlayingCard* DrawCard();
 	std::vector<PlayingCard*> DrawMultiple(const int _count);
 

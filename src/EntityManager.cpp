@@ -2,8 +2,8 @@
 
 #include <algorithm>
 
-#include "Toolbox.h"
 #include "InputManager.h"
+#include "Utility/Utility.h"
 
 EntityManager::EntityManager()
 {
@@ -34,7 +34,7 @@ void EntityManager::Update()
 	auto rit = instance->entities.rbegin();
 	for (; rit != instance->entities.rend(); ++rit)
 	{
-		if (IsPointInRectangle(mousePosition, (*rit)->position, (*rit)->GetDimensions()))
+		if ((*rit)->active && util::IsPointInRectangle(mousePosition, (*rit)->position, (*rit)->GetDimensions()))
 		{
 			(*rit)->InvokeOnMouseOver();
 			if (InputManager::GetMouseButtonDown(MouseButton::LEFT))
@@ -82,12 +82,4 @@ void EntityManager::SortEntitiesByRenderOrder()
 	std::sort(entities.begin(), entities.end(), [&](const Entity* a, const Entity* b) -> bool {
 		return a->renderOrder < b->renderOrder;
 	});
-}
-
-bool EntityManager::IsPointInRectangle(const glm::vec2& _point, const glm::vec2& _position, const glm::vec2& _dimensions)
-{
-	return _point.x  >= _position.x 
-		&& _point.y >= _position.y
-		&& _point.x <= _position.x + _dimensions.x 
-		&& _point.y <= _position.y + _dimensions.y;
 }

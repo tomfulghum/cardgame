@@ -181,6 +181,10 @@ xcopy /y /d /s "$(SolutionDir)\assets\*" "$(TargetDir)\assets\"</Command>
     <ClCompile Include="src\EntityManager.cpp" />
     <ClCompile Include="src\Entity\FPSCounter.cpp" />
     <ClCompile Include="src\Entity\PlayingCardPile.cpp" />
+    <ClCompile Include="src\Entity\PlayingCardSpot.cpp" />
+    <ClCompile Include="src\Entity\GameController.cpp" />
+    <ClCompile Include="src\Entity\TextButton.cpp" />
+    <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\PlayingCardDeck.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\PlayingCard.cpp" />
@@ -283,6 +287,10 @@ xcopy /y /d /s "$(SolutionDir)\assets\*" "$(TargetDir)\assets\"</Command>
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\EntityManager.h" />
     <ClInclude Include="include\Entity\FPSCounter.h" />
+    <ClInclude Include="include\Entity\PlayingCardSpot.h" />
+    <ClInclude Include="include\Entity\GameController.h" />
+    <ClInclude Include="include\Entity\TextButton.h" />
+    <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\PlayingCardDeck.h" />
     <ClInclude Include="include\InputManager.h" />
     <ClInclude Include="include\PlayingCard.h" />
@@ -291,6 +299,8 @@ xcopy /y /d /s "$(SolutionDir)\assets\*" "$(TargetDir)\assets\"</Command>
     <ClInclude Include="include\Time.h" />
     <ClInclude Include="include\Toolbox.h" />
     <ClInclude Include="include\Environment.h" />
+    <ClInclude Include="include\Utility\Color.h" />
+    <ClInclude Include="include\Utility\Utility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
