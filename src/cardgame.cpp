@@ -1,14 +1,8 @@
-#include <iostream>
-
 #include "AssetDatabase.h"
 #include "Config.h"
 #include "Entity/FPSCounter.h"
 #include "Entity/GameController.h"
-#include "Entity/PlayingCardPile.h"
-#include "Entity/PlayingCardSpot.h"
 #include "Environment.h"
-#include "PlayingCard.h"
-#include "PlayingCardDeck.h"
 #include "Toolbox.h"
 
 void LoadAssets();
@@ -16,7 +10,7 @@ void LoadAssets();
 int main(int argc, char* args[])
 {
 	Toolbox::Initialize();
-	Environment::Initialize("Test", 1280, 720);
+	Environment::Initialize("Ropascilispo", 1280, 720);
 
 	LoadAssets();
 

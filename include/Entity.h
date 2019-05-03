@@ -23,9 +23,9 @@ public:
 	void SetOnClickCallback(OnClickCallback _callback);
 
 	inline int GetRenderOrder() const { return this->renderOrder; }
-	inline glm::vec2 GetPosition() { return this->position; }
-	inline glm::vec2 GetDimensions() { return this->dimensions * this->scale; }
-	inline float GetScale() { return this->scale; }
+	inline glm::vec2 GetPosition() const { return this->position; }
+	inline glm::vec2 GetDimensions() const { return this->dimensions * this->scale; }
+	inline float GetScale() const { return this->scale; }
 
 protected:
 	Entity(glm::vec2 _position = glm::vec2(), int _renderOrder = 0);

@@ -66,17 +66,6 @@ void PlayingCardPile::AddToTop(PlayingCard* _card)
 	}
 }
 
-void PlayingCardPile::AddToTop(std::vector<PlayingCard*>& _cards)
-{
-	if (_cards.size() > 0)
-	{
-		for (auto& card : _cards)
-		{
-			this->cards.push_back(card);
-		}
-	}
-}
-
 int PlayingCardPile::Count()
 {
 	return (int)this->cards.size();

@@ -13,7 +13,6 @@ public:
 	void Shuffle();
 	int Count();
 	PlayingCard* DrawCard();
-	std::vector<PlayingCard*> DrawMultiple(const int _count);
 
 private:
 	std::vector<PlayingCard*> cards;

@@ -18,7 +18,6 @@ public:
 
 	PlayingCard* DrawCard();
 	void AddToTop(PlayingCard* _card);
-	void AddToTop(std::vector<PlayingCard*>& _cards);
 	int Count();
 
 private:
