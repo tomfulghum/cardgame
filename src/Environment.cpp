@@ -76,7 +76,7 @@ void Environment::Initialize(const std::string& _windowName, const int _windowWi
 	instance->windowWidth = _windowWidth;
 	instance->windowHeight = _windowHeight;
 
-	instance->renderer = SDL_CreateRenderer(instance->window, -1, SDL_RENDERER_ACCELERATED);
+	instance->renderer = SDL_CreateRenderer(instance->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (instance->renderer == nullptr)
 	{
 		std::cout << "[ERROR] Environment: Failed to initialize SDL2 Renderer!" << std::endl;
