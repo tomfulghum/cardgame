@@ -51,7 +51,7 @@ void PlayingCardDeck::Shuffle()
 
 int PlayingCardDeck::Count()
 {
-	return this->cards.size();
+	return (int)this->cards.size();
 }
 
 PlayingCard* PlayingCardDeck::DrawCard()

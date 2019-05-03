@@ -57,10 +57,16 @@ private:
 	TextButton* buttonContinue;
 	TextButton* buttonEnd;
 
+	TextButton* menuButtonStart;
+	TextButton* menuButtonExit;
+
 	int playerTurnCounter = 0;
 
+	void ShowMenu();
+	void StartGame();
 	void BeginTurn(Player* _winner);
 	void SwitchPlayers();
 	void EndTurn();
+	void CheckWinner();
 	void SetPlayerActive(Player* _player);
 };

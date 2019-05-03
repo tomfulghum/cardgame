@@ -16,6 +16,7 @@ public:
 	void SetDoHighlight(bool _doHighlight);
 
 	PlayingCard* TakeCard();
+	PlayingCardType Peek();
 	bool IsFree();
 	void Clear();
 

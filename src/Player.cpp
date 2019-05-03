@@ -27,13 +27,16 @@ void Player::SetDoHighlight(bool _doHighlight)
 
 bool Player::GiveCard(PlayingCard* _card)
 {
-	for (int i = 0; i < this->hand.size(); i++)
+	if (_card != nullptr)
 	{
-		if (this->hand[i]->IsFree())
+		for (int i = 0; i < this->hand.size(); i++)
 		{
-			this->hand[i]->SetCard(_card);
-			this->hand[i]->SetActive(true);
-			return true;
+			if (this->hand[i]->IsFree())
+			{
+				this->hand[i]->SetCard(_card);
+				this->hand[i]->SetActive(true);
+				return true;
+			}
 		}
 	}
 

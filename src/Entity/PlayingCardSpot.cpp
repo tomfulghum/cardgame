@@ -56,6 +56,11 @@ PlayingCard* PlayingCardSpot::TakeCard()
 	return takenCard;
 }
 
+PlayingCardType PlayingCardSpot::Peek()
+{
+	return this->card->GetType();
+}
+
 bool PlayingCardSpot::IsFree()
 {
 	return this->card == nullptr;

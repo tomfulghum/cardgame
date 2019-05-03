@@ -14,6 +14,8 @@ public:
 	void Update() override;
 	void Render() override;
 
+	void SetDoHighlight(bool _doHighlight);
+
 	PlayingCard* DrawCard();
 	void AddToTop(PlayingCard* _card);
 	void AddToTop(std::vector<PlayingCard*>& _cards);
@@ -26,6 +28,7 @@ private:
 	Texture* texture;
 	Texture* highlightTexture;
 	bool highlight = false;
+	bool doHighlight = true;
 
 	void OnMouseOver() override;
 };

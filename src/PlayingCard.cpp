@@ -25,21 +25,21 @@ PlayingCard::PlayingCard(const PlayingCardType _type) : type(_type)
 	}
 }
 
-bool PlayingCard::Beats(PlayingCard* _card)
+bool PlayingCard::Beats(PlayingCardType _left, PlayingCardType _right)
 {
-	PlayingCardType cardType = _card->GetType();
-
-	switch (this->GetType())
+	switch (_left)
 	{
 	case PlayingCardType::ROCK:
-		return cardType == PlayingCardType::LIZARD || cardType == PlayingCardType::SCISSORS;
+		return _right == PlayingCardType::LIZARD || _right == PlayingCardType::SCISSORS;
 	case PlayingCardType::PAPER:
-		return cardType == PlayingCardType::SPOCK || cardType == PlayingCardType::ROCK;
+		return _right == PlayingCardType::SPOCK || _right == PlayingCardType::ROCK;
 	case PlayingCardType::SCISSORS:
-		return cardType == PlayingCardType::LIZARD || cardType == PlayingCardType::PAPER;
+		return _right == PlayingCardType::LIZARD || _right == PlayingCardType::PAPER;
 	case PlayingCardType::LIZARD:
-		return cardType == PlayingCardType::SPOCK || cardType == PlayingCardType::PAPER;
+		return _right == PlayingCardType::SPOCK || _right == PlayingCardType::PAPER;
 	case PlayingCardType::SPOCK:
-		return cardType == PlayingCardType::ROCK || cardType == PlayingCardType::SCISSORS;
+		return _right == PlayingCardType::ROCK || _right == PlayingCardType::SCISSORS;
+	default:
+		return false;
 	}
 }

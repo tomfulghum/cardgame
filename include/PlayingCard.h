@@ -20,7 +20,7 @@ public:
 	PlayingCardType GetType() { return this->type; }
 	Texture* GetTexture() { return this->cardTexture; }
 
-	bool Beats(PlayingCard* _card);
+	static bool Beats(PlayingCardType _left, PlayingCardType _right);
 
 private:
 	PlayingCardType type;

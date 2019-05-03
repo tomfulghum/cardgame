@@ -29,7 +29,7 @@ void PlayingCardPile::Render()
 		this->cards.back()->GetTexture()->Render(this->position, this->scale);
 	}
 
-	if (this->highlight && this->cards.size() > 0)
+	if (this->doHighlight && this->highlight && this->cards.size() > 0)
 	{
 		this->highlightTexture->Render(this->position, this->scale);
 		this->highlight = false;
@@ -39,6 +39,11 @@ void PlayingCardPile::Render()
 void PlayingCardPile::OnMouseOver()
 {
 	this->highlight = true;
+}
+
+void PlayingCardPile::SetDoHighlight(bool _doHighlight)
+{
+	this->doHighlight = _doHighlight;
 }
 
 PlayingCard* PlayingCardPile::DrawCard()

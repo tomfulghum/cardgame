@@ -129,6 +129,12 @@ void Environment::Run()
 	}
 }
 
+void Environment::Exit()
+{
+	Environment* instance = Toolbox::GetEnvironment();
+	instance->quit = true;
+}
+
 void Environment::Update()
 {
 	InputManager* inputManager = Toolbox::GetInputManager();
