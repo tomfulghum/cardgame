@@ -2,6 +2,10 @@
 
 #include "Utility/Color.h"
 
+/*
+	Global constants
+*/
+
 constexpr auto SPRITE_CARD_ROCK           = "assets/sprites/card_rock.png";
 constexpr auto SPRITE_CARD_PAPER          = "assets/sprites/card_paper.png";
 constexpr auto SPRITE_CARD_SCISSORS       = "assets/sprites/card_scissors.png";

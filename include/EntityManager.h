@@ -5,6 +5,10 @@
 #include "Entity.h"
 #include "Toolbox.h"
 
+/*
+	Manages all entities.
+*/
+
 class EntityManager
 {
 	friend class Toolbox;

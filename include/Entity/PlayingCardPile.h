@@ -6,6 +6,10 @@
 #include "PlayingCard.h"
 #include "Texture.h"
 
+/*
+	A pile of cards which can be clicked to draw a card.
+*/
+
 class PlayingCardPile : public Entity
 {
 	friend class EntityManager;

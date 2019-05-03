@@ -4,6 +4,10 @@
 
 #include "SDL.h"
 
+/*
+	Manages and provides access to the SDL window and renderer.
+*/
+
 class Environment
 {
 	friend class Toolbox;

@@ -4,6 +4,10 @@
 #include "InputManager.h"
 #include "Environment.h"
 
+/*
+	Manages and provides access to all singletons
+*/
+
 //     _.+._
 //   (^\/^\/^)
 //    \@*@*@/

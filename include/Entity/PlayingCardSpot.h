@@ -4,6 +4,10 @@
 #include "PlayingCard.h"
 #include "Texture.h"
 
+/*
+	A spot which can contain one playing card.
+*/
+
 class PlayingCardSpot : public Entity
 {
 	friend class EntityManager;

@@ -3,6 +3,10 @@
 #include "Entity.h"
 #include "Texture.h"
 
+/*
+	Displays a FPS counter in the top right corner of the window.
+*/
+
 class FPSCounter : public Entity
 {
 	friend class EntityManager;

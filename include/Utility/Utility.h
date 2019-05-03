@@ -1,5 +1,9 @@
 #pragma once
 
+/*
+	Static utility functions.
+*/
+
 #include "glm.hpp"
 namespace util
 {

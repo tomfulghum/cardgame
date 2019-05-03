@@ -5,6 +5,10 @@
 #include "SDL.h"
 #include "glm.hpp"
 
+/*
+	Manages the input state.
+*/
+
 enum class ButtonState
 {
 	NONE,

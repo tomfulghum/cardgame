@@ -7,6 +7,10 @@
 #include "Entity/PlayingCardSpot.h"
 #include "Entity/GameController.h"
 
+/*
+	Represents one player.
+*/
+
 class Player
 {
 public:
