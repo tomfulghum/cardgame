@@ -27,8 +27,9 @@ void PlayingCardSpot::Render()
 	if (this->doHighlight && this->highlight)
 	{
 		this->highlightTexture->Render(this->position, this->scale);
-		this->highlight = false;
 	}
+
+	this->highlight = false;
 }
 
 void PlayingCardSpot::OnMouseOver()
