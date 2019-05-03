@@ -9,7 +9,6 @@
 	Provides basic properties like position an scale as well as Update, Render, MouseOver and Click functions.
 	All entities can only be constructed and are managed by the EntityManager.
 */
-
 class Entity
 {
 	friend class EntityManager;

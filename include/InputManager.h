@@ -5,10 +5,6 @@
 #include "SDL.h"
 #include "glm.hpp"
 
-/*
-	Manages the input state.
-*/
-
 enum class ButtonState
 {
 	NONE,
@@ -28,6 +24,9 @@ enum class MouseButton
 	MOUSE_BUTTON_COUNT
 };
 
+/*
+	Manages the input state.
+*/
 class InputManager
 {
 	friend class Toolbox;

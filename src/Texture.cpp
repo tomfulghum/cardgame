@@ -12,6 +12,9 @@ Texture::~Texture()
 	SDL_DestroyTexture(this->texture);
 }
 
+/*
+	Renders the texture at the given position with the given scale.
+*/
 void Texture::Render(const glm::vec2& _position, const double _scale)
 {
 	SDL_Rect rect = SDL_Rect();

@@ -5,7 +5,6 @@
 /*
 	Data structure to save a 32bit RGBA color.
 */
-
 struct Color 
 {
 	unsigned char r;

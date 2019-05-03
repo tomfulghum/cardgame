@@ -7,7 +7,6 @@
 /*
 	A clickable button which displays text.
 */
-
 class TextButton : public Entity
 {
 	friend class EntityManager;

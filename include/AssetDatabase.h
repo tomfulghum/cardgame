@@ -10,7 +10,6 @@
 /*
 	Saves and provides access to assets like sprites or fonts.
 */
-
 class AssetDatabase
 {
 public:

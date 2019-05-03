@@ -3,7 +3,6 @@
 /*
 	Globally provides acces to deltaTime
 */
-
 class Time
 {
 	friend class Environment;

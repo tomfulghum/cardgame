@@ -25,6 +25,10 @@ void Player::SetDoHighlight(bool _doHighlight)
 	}
 }
 
+/*
+	Gives the player a card.
+	Returns false if no spot in the player's hand is free.
+*/
 bool Player::GiveCard(PlayingCard* _card)
 {
 	if (_card != nullptr)
@@ -48,6 +52,9 @@ void Player::Score()
 	this->score++;
 }
 
+/*
+	Resets the player to its initial state.
+*/
 void Player::Reset()
 {
 	this->score = 0;
@@ -58,6 +65,10 @@ void Player::Reset()
 	}
 }
 
+/*
+	Callback function for all PlayingCardSpots that belong to the player.
+	This is called when the PlayingCardSpot is clicked on.
+*/
 void Player::SpotOnClick(Entity* _spot)
 {
 	PlayingCardSpot* spot = static_cast<PlayingCardSpot*>(_spot);

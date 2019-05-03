@@ -11,7 +11,6 @@ class Player;
 /*
 	Manages the round logic, game state and scoring.
 */
-
 class GameController : public Entity
 {
 	friend class EntityManager;

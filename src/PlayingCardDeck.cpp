@@ -11,6 +11,9 @@ PlayingCardDeck::PlayingCardDeck()
 	this->GenerateDeck();
 }
 
+/*
+	Randomly distrbutes 10 cards of each type within the deck.
+*/
 void PlayingCardDeck::GenerateDeck()
 {
 	for (auto& card : cards)
@@ -54,6 +57,9 @@ int PlayingCardDeck::Count()
 	return (int)this->cards.size();
 }
 
+/*
+	Draws a card from the deck and returns it.
+*/
 PlayingCard* PlayingCardDeck::DrawCard()
 {
 	PlayingCard* card = nullptr;

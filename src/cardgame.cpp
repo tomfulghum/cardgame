@@ -7,6 +7,9 @@
 
 void LoadAssets();
 
+/*
+	Main function
+*/
 int main(int argc, char* args[])
 {
 	Toolbox::Initialize();
@@ -27,6 +30,9 @@ int main(int argc, char* args[])
 	return 0;
 }
 
+/*
+	Loads all necessary assets from disk.
+*/
 void LoadAssets()
 {
 	const std::vector<std::pair<const char*, const char*>> sprites = 

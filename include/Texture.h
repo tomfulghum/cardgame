@@ -6,7 +6,6 @@
 /*
 	A wrapper for SDL_Texture
 */
-
 class Texture
 {
 public:

@@ -7,7 +7,6 @@
 /*
 	A spot which can contain one playing card.
 */
-
 class PlayingCardSpot : public Entity
 {
 	friend class EntityManager;

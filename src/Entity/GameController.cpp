@@ -14,9 +14,11 @@ GameController::GameController() : Entity(glm::vec2(), 0)
 
 void GameController::Update()
 {
+	// Update player scores
 	this->scorePlayer1->SetText(std::to_string(this->player1->GetScore()));
 	this->scorePlayer2->SetText(std::to_string(this->player2->GetScore()));
 
+	// Highlight current active player
 	if (this->phase == GamePhase::PLAY || this->phase == GamePhase::DRAW)
 	{
 		if (this->activePlayer == this->player1)
@@ -42,14 +44,19 @@ void GameController::Render()
 
 }
 
+/*
+	Creates and configures all necessary instances.
+*/
 void GameController::Initialize()
 {
 	int screenMiddle = (Environment::GetWindowWidth() / 2);
 	int boardMiddle = screenMiddle - 130;
 
+	// Create players
 	this->player1 = new Player(this, glm::vec2(boardMiddle - 320, 10));
 	this->player2 = new Player(this, glm::vec2(boardMiddle - 320, 490));
 
+	// Create playing card piles
 	this->pile1 = EntityManager::CreateEntity<PlayingCardPile>();
 	this->pile1->SetPosition(boardMiddle + 550, 100);
 	this->pile1->SetActive(false);
@@ -66,6 +73,7 @@ void GameController::Initialize()
 		this->DrawCard(pile->DrawCard(), pile);
 	});
 
+	// Create spots for played cards
 	this->spotPlayer1 = EntityManager::CreateEntity<PlayingCardSpot>();
 	this->spotPlayer1->SetPosition(boardMiddle - 280, 250);
 	this->spotPlayer1->SetDoHighlight(false);
@@ -73,6 +81,7 @@ void GameController::Initialize()
 	this->spotPlayer2->SetPosition(boardMiddle + 120, 250);
 	this->spotPlayer2->SetDoHighlight(false);
 
+	// Create texts for player 1
 	this->textPlayer1 = EntityManager::CreateEntity<TextButton>();
 	this->textPlayer1->SetPosition(boardMiddle - 460, 290);
 	this->textPlayer1->SetText("Player 1");
@@ -85,6 +94,7 @@ void GameController::Initialize()
 	this->scorePlayer1->SetInteractable(false);
 	this->scorePlayer1->SetActive(false);
 
+	// Create texts for player 2
 	this->textPlayer2 = EntityManager::CreateEntity<TextButton>();
 	this->textPlayer2->SetPosition(boardMiddle + 315, 290);
 	this->textPlayer2->SetText("Player 2");
@@ -97,6 +107,7 @@ void GameController::Initialize()
 	this->scorePlayer2->SetInteractable(false);
 	this->scorePlayer2->SetActive(false);
 
+	// Create text messages
 	this->textMsgVs = EntityManager::CreateEntity<TextButton>();
 	this->textMsgVs->SetPosition(boardMiddle - 45, 310);
 	this->textMsgVs->SetText("VS");
@@ -132,6 +143,7 @@ void GameController::Initialize()
 	this->textMsgDraw->SetInteractable(false);
 	this->textMsgDraw->SetActive(false);
 
+	// Create buttons
 	this->buttonContinue = EntityManager::CreateEntity<TextButton>();
 	this->buttonContinue->SetPosition(boardMiddle - 85, 400);
 	this->buttonContinue->SetText("Continue");
@@ -152,6 +164,7 @@ void GameController::Initialize()
 		this->ShowMenu();
 	});
 
+	// Create menu buttons
 	this->menuButtonStart = EntityManager::CreateEntity<TextButton>();
 	this->menuButtonStart->SetPosition(screenMiddle - 130, 280);
 	this->menuButtonStart->SetText("Start Game");
@@ -175,6 +188,9 @@ void GameController::Initialize()
 	this->ShowMenu();
 }
 
+/*
+	Is called by a player when he tries to play a card.
+*/
 bool GameController::PlayCard(PlayingCard* _card, Player* _player)
 {
 	if (_player == this->activePlayer && this->phase == GamePhase::PLAY)
@@ -195,6 +211,9 @@ bool GameController::PlayCard(PlayingCard* _card, Player* _player)
 	return false;
 }
 
+/*
+	Is called by a PlayingCardPile when a player tries to draw a card from it.
+*/
 void GameController::DrawCard(PlayingCard* _card, PlayingCardPile* _pile)
 {
 	if (this->phase == GamePhase::DRAW)
@@ -209,6 +228,9 @@ void GameController::DrawCard(PlayingCard* _card, PlayingCardPile* _pile)
 	_pile->AddToTop(_card);
 }
 
+/*
+	Hides all game elements and shows the menu
+*/
 void GameController::ShowMenu()
 {
 	this->phase = GamePhase::MENU;
@@ -238,6 +260,9 @@ void GameController::ShowMenu()
 	this->buttonEnd->SetActive(false);
 }
 
+/*
+	Hides the menu, resets the players, piles and deck and starts the game loop.
+*/
 void GameController::StartGame()
 {
 	this->menuButtonStart->SetActive(false);
@@ -277,6 +302,9 @@ void GameController::StartGame()
 	this->BeginTurn(this->player1);
 }
 
+/*
+	Hides the winner messages and begins a new turn.
+*/
 void GameController::BeginTurn(Player* _winner)
 {
 	this->spotPlayer1->Clear();
@@ -296,6 +324,9 @@ void GameController::BeginTurn(Player* _winner)
 	this->buttonEnd->SetActive(false);
 }
 
+/*
+	Switches the players within a turn.
+*/
 void GameController::SwitchPlayers()
 {
 	this->playerTurnCounter++;
@@ -327,6 +358,10 @@ void GameController::SwitchPlayers()
 	}
 }
 
+/*
+	Ends a turn, determines the winner and displays the appropriate messages.
+	If the game ending conditions are met, ends the game.
+*/
 void GameController::EndTurn()
 {
 	this->textMsgVs->SetActive(false);
@@ -378,6 +413,9 @@ void GameController::EndTurn()
 	}
 }
 
+/*
+	Checks wich player won a turn and sets the appropriate messages.
+*/
 void GameController::CheckWinner()
 {
 	if (this->player1->GetScore() > this->player2->GetScore())
@@ -401,6 +439,9 @@ void GameController::CheckWinner()
 	this->buttonEnd->SetActive(true);
 }
 
+/*
+	Sets a player as the active player.
+*/
 void GameController::SetPlayerActive(Player* _player)
 {
 	if (_player == this->player1)

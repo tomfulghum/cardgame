@@ -5,7 +5,6 @@
 /*
 	Represents one playing card.
 */
-
 enum class PlayingCardType
 {
 	ROCK,

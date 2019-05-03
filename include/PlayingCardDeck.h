@@ -7,7 +7,6 @@
 /*
 	A deck of cards that can be drawn from.
 */
-
 class PlayingCardDeck
 {
 public:

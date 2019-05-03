@@ -60,6 +60,9 @@ int Environment::GetWindowHeight()
 	return instance->windowHeight;
 }
 
+/*
+	Initializes SDL
+*/
 void Environment::Initialize(const std::string& _windowName, const int _windowWidth, const int _windowHeight)
 {
 	Environment* instance = Toolbox::GetEnvironment();
@@ -99,6 +102,9 @@ void Environment::Initialize(const std::string& _windowName, const int _windowWi
 	Toolbox::GetInputManager()->Update();
 }
 
+/*
+	Terminates SDL
+*/
 void Environment::Terminate()
 {
 	Environment* instance = Toolbox::GetEnvironment();
@@ -109,6 +115,9 @@ void Environment::Terminate()
 	instance->initialized = false;
 }
 
+/*
+	Runs the main application loop.
+*/
 void Environment::Run()
 {
 	Environment* instance = Toolbox::GetEnvironment();
@@ -129,12 +138,18 @@ void Environment::Run()
 	}
 }
 
+/*
+	Gracefully exits the application.
+*/
 void Environment::Exit()
 {
 	Environment* instance = Toolbox::GetEnvironment();
 	instance->quit = true;
 }
 
+/*
+	Distributes SDL Events to their appropriate handlers.
+*/
 void Environment::Update()
 {
 	InputManager* inputManager = Toolbox::GetInputManager();
@@ -157,6 +172,9 @@ void Environment::Update()
 	}
 }
 
+/*
+	Renders the entities render calls to the screen.
+*/
 void Environment::Render()
 {
 	if (!this->initialized)

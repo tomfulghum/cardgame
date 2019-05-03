@@ -25,6 +25,9 @@ PlayingCard::PlayingCard(const PlayingCardType _type) : type(_type)
 	}
 }
 
+/*
+	Returns true if _left beats _right.
+*/
 bool PlayingCard::Beats(PlayingCardType _left, PlayingCardType _right)
 {
 	switch (_left)

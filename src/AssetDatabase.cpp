@@ -11,6 +11,9 @@ std::map<std::string, Texture*> AssetDatabase::textures;
 std::map<std::string, TTF_Font*> AssetDatabase::fonts;
 std::map<std::string, Texture*> AssetDatabase::texts;
 
+/*
+	Loads a texture from disk and saves it to the database.
+*/
 Texture* AssetDatabase::LoadTexture(const std::string& _name, const std::string& _path)
 {
 	if (textures.find(_name) != textures.end())
@@ -48,6 +51,9 @@ Texture* AssetDatabase::LoadTexture(const std::string& _name, const std::string&
 	return texture;
 }
 
+/*
+	Returns a texture from the database by name.
+*/
 Texture* AssetDatabase::GetTexture(const std::string& _name)
 {
 	if (textures.find(_name) == textures.end())
@@ -59,6 +65,10 @@ Texture* AssetDatabase::GetTexture(const std::string& _name)
 	return textures[_name];
 }
 
+/*
+	Renders a text with given properties to a texture and saves it to the database if specified.
+	If the specified font is not in the database, it is loaded from disk and saved.
+*/
 Texture* AssetDatabase::RenderText(const std::string& _fontPath, const int _size, const std::string& _text, Color _color, const bool _save)
 {
 	std::string identifier = _fontPath + std::to_string(_size) + _color.ToString() + _text;
@@ -112,6 +122,9 @@ Texture* AssetDatabase::RenderText(const std::string& _fontPath, const int _size
 	return texture;
 }
 
+/*
+	Clears the texture database.
+*/
 void AssetDatabase::ClearTextures()
 {
 	for (auto& texture : textures)
@@ -121,6 +134,9 @@ void AssetDatabase::ClearTextures()
 	textures.clear();
 }
 
+/*
+	Clears the font database.
+*/
 void AssetDatabase::ClearFonts()
 {
 	for (auto& font : fonts)
@@ -130,6 +146,9 @@ void AssetDatabase::ClearFonts()
 	fonts.clear();
 }
 
+/*
+	Clears the text database.
+*/
 void AssetDatabase::ClearTexts()
 {
 	for (auto& text : texts)
@@ -139,6 +158,9 @@ void AssetDatabase::ClearTexts()
 	texts.clear();
 }
 
+/*
+	Loads a font from disk and saves it in the database.
+*/
 TTF_Font* AssetDatabase::LoadFont(const std::string& _path, const int _size)
 {
 	std::string name = _path + std::to_string(_size);

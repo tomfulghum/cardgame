@@ -36,6 +36,11 @@ glm::vec2 InputManager::GetMousePosition()
 	return glm::vec2(x, y);
 }
 
+/*
+	Updates the button states.
+	If a button was DOWN in the previous frame, it is now PRESSED.
+	If a button was UP in the previous frame, it is now NONE.
+*/
 void InputManager::Update()
 {
 	for (auto& state : mouseButtonStates)
@@ -52,6 +57,9 @@ void InputManager::Update()
 	}
 }
 
+/*
+	Handles an SDL input event provided by Environment.
+*/
 void InputManager::HandleInputEvent(SDL_Event& _event)
 {
 	switch (_event.type)
@@ -67,6 +75,9 @@ void InputManager::HandleInputEvent(SDL_Event& _event)
 	}
 }
 
+/*
+	Translates from SDL mouse button to internal mouse button type.
+*/
 MouseButton InputManager::GetMouseButtonFromSDL(Uint8 _button)
 {
 	switch (_button)

@@ -8,7 +8,6 @@
 /*
 	Manages all entities.
 */
-
 class EntityManager
 {
 	friend class Toolbox;

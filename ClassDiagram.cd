@@ -1,2 +1,151 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AssetDatabase" Collapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAEABACAEAAAAACAAAAABAAAAAAAAAAAAAAAAEQAAg=</HashCode>
+      <FileName>include\AssetDatabase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entity" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgxAAAAAACAAAAAAAgAAIEBCAAAABgBAIBAAIoBQAIA=</HashCode>
+      <FileName>include\Entity.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityManager" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAAAAAAAAAAAAAABAAAAAAAAAAAQAAABAAAIEAAAg=</HashCode>
+      <FileName>include\EntityManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FPSCounter" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAQAAAAAAAAAAAACAAAAAAACAAAIABAAAAAAAAA=</HashCode>
+      <FileName>include\Entity\FPSCounter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayingCardSpot" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAARAAQAAEgAAAAAAAAAAEAAACAAAAABhAAABQAAA=</HashCode>
+      <FileName>include\Entity\PlayingCardSpot.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameController" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="GameController::GamePhase" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>include\Entity\GameController.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>wEQgEoAAABQIAQAAAgABAAgoEgIAAkAghFIEEAABAaQ=</HashCode>
+      <FileName>include\Entity\GameController.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TextButton" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQCAAAgiAAAAAAAAIAIAQQCAQAAAACIABhAAAAQAAA=</HashCode>
+      <FileName>include\Entity\TextButton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player" Collapsed="true">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAQAAAABAkgAAAIIAAACAAAAAAAAAAAgQAAAAA=</HashCode>
+      <FileName>include\Player.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayingCardDeck" Collapsed="true">
+    <Position X="15.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQBAAAAAAAgAAAQAEAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>include\PlayingCardDeck.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputManager" Collapsed="true">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAABAQAwCAAAAAAAAAAAGAAAAAAIAAQAAA=</HashCode>
+      <FileName>include\InputManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayingCard" Collapsed="true">
+    <Position X="13.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACCAAAAAQAAAAAAAAAAAABAAEAAAAAABAAAAA=</HashCode>
+      <FileName>include\PlayingCard.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayingCardPile" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAxAAAAAAAAAAAAgAAAQAEAACAgAAABBgAAAQAAA=</HashCode>
+      <FileName>include\Entity\PlayingCardPile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Texture" Collapsed="true">
+    <Position X="17.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAgAQAQAAAAABAAAAAAgAAABIAAEAAAAA=</HashCode>
+      <FileName>include\Texture.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Time" Collapsed="true">
+    <Position X="12" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>include\Time.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Toolbox" Collapsed="true">
+    <Position X="13.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAwAAAAAAAAAACAAAAAAggBAEAAAACAA=</HashCode>
+      <FileName>include\Toolbox.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Environment" Collapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAACABAAAQAAAgAAAAAAAAAAACAIIBgFAACAoII=</HashCode>
+      <FileName>include\Environment.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Color" Collapsed="true">
+    <Position X="12" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAQAAAAAAAAAoAQABAAAAAAA=</HashCode>
+      <FileName>include\Utility\Color.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="ButtonState" Collapsed="true">
+    <Position X="12" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAQAAAAAAAQICAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>include\InputManager.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MouseButton" Collapsed="true">
+    <Position X="13.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgCAAAABAAAAAIAAABAgAAAAAAAAAAA=</HashCode>
+      <FileName>include\InputManager.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PlayingCardType" Collapsed="true">
+    <Position X="15.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAggAAAAAAAAAAAAAAAAAARAIAA=</HashCode>
+      <FileName>include\PlayingCard.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

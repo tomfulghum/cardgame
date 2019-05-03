@@ -10,6 +10,9 @@ EntityManager::EntityManager()
 
 }
 
+/*
+	Invokes OnMouseOver and OnClick methods on all active entities and updates them.
+*/
 void EntityManager::Update()
 {
 	EntityManager* instance = Toolbox::GetEntityManager();
@@ -54,6 +57,9 @@ void EntityManager::Update()
 	}
 }
 
+/*
+	Renders all active entities.
+*/
 void EntityManager::Render()
 {
 	EntityManager* instance = Toolbox::GetEntityManager();
@@ -67,6 +73,9 @@ void EntityManager::Render()
 	}
 }
 
+/*
+	Removes an Entity from the list and deletes it from memory.
+*/
 void EntityManager::DestroyEntity(Entity* _entity)
 {
 	EntityManager* instance = Toolbox::GetEntityManager();

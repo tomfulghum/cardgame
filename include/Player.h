@@ -10,7 +10,6 @@
 /*
 	Represents one player.
 */
-
 class Player
 {
 public:
